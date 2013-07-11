@@ -1,0 +1,168 @@
+nic 1
+name "iphone/activator_listener"
+
+file 71 @@PROJECTNAME@@.m
+#import <libactivator/libactivator.h>
+#import <UIKit/UIKit.h>
+
+@interface @@PROJECTNAME@@ : NSObject <LAListener, UIAlertViewDelegate> {
+@private
+	UIAlertView *av;
+}
+@end
+
+@implementation @@PROJECTNAME@@
+
+- (BOOL)dismiss {
+	// Ensures alert view is dismissed
+	// Returns YES if alert was visible previously
+	if (av) {
+		[av dismissWithClickedButtonIndex:[av cancelButtonIndex] animated:YES];
+		[av release];
+		av = nil;
+		return YES;
+	}
+	return NO;
+}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+	[av release];
+	av = nil;
+}
+
+- (void)activator:(LAActivator *)activator receiveEvent:(LAEvent *)event {
+	// Called when we recieve event
+	if (![self dismiss]) {
+		av = [[UIAlertView alloc] initWithTitle:@"Example Listener" message:[event name] delegate:self cancelButtonTitle:@"Ok" 
+otherButtonTitles:nil];
+		[av show];
+		[event setHandled:YES];
+	}
+}
+
+- (void)activator:(LAActivator *)activator abortEvent:(LAEvent *)event {
+	// Called when event is escalated to a higher event
+	// (short-hold sleep button becomes long-hold shutdown menu, etc)
+	[self dismiss];
+}
+
+- (void)activator:(LAActivator *)activator otherListenerDidHandleEvent:(LAEvent *)event {
+	// Called when some other listener received an event; we should cleanup
+	[self dismiss];
+}
+
+- (void)activator:(LAActivator *)activator receiveDeactivateEvent:(LAEvent *)event {
+	// Called when the home button is pressed.
+	// If (and only if) we are showing UI, we should dismiss it and call setHandled:
+	if ([self dismiss])
+		[event setHandled:YES];
+}
+
+- (void)dealloc {
+	// Since this object lives for the lifetime of SpringBoard, this will never be called
+	// It's here for the sake of completeness
+	[av release];
+	[super dealloc];
+}
+
++ (void)load {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	// Register our listener
+	[[LAActivator sharedInstance] registerListener:[self new] forName:@"@@PACKAGENAME@@"];
+	[pool release];
+}
+
+@end
+
+file 8 Makefile
+include @@THEOS@@/makefiles/common.mk
+
+TWEAK_NAME = @@PROJECTNAME@@
+@@PROJECTNAME@@_OBJC_FILES = @@PROJECTNAME@@.m
+@@PROJECTNAME@@_FRAMEWORKS = Foundation UIKit
+@@PROJECTNAME@@_LIBRARIES = activator
+
+include $(THEOS_MAKE_PATH)/tweak.mk
+
+dir layout
+dir layout/DEBIAN
+file 10 layout/DEBIAN/control
+Package: @@PACKAGENAME@@
+Name: @@FULLPROJECTNAME@@
+Description: Simply shows the event name in an UIAlertView
+Version: 0.1
+Priority: optional
+Section: Addons (Activator)
+Architecture: iphoneos-arm
+Depends: mobilesubstrate, libactivator
+Maintainer: @@USER@@
+Author: @@USER@@
+
+dir layout/Library
+dir layout/Library/Activator
+dir layout/Library/Activator/Listeners
+dir layout/Library/Activator/Listeners/@@PACKAGENAME@@
+file 10 layout/Library/Activator/Listeners/@@PACKAGENAME@@/Info.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>description</key>
+	<string>Example code for Activator</string>
+	<key>title</key>
+	<string>Example Listener</string>
+</dict>
+</plist>
+
+dir layout/Library/MobileSubstrate
+dir layout/Library/MobileSubstrate/DynamicLibraries
+file 13 layout/Library/MobileSubstrate/DynamicLibraries/@@PROJECTNAME@@.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Filter</key>
+	<dict>
+		<key>Bundles</key>
+		<array>
+			<string>com.apple.springboard</string>
+		</array>
+	</dict>
+</dict>
+</plist>
+
+dir layout/Library/PreferenceLoader
+dir layout/Library/PreferenceLoader/Preferences
+file 32 layout/Library/PreferenceLoader/Preferences/@@PROJECTNAME@@.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>entry</key>
+	<dict>
+		<key>cell</key>
+		<string>PSLinkCell</string>
+		<key>icon</key>
+		<string>@@PROJECTNAME@@.png</string>
+		<key>label</key>
+		<string>@@PROJECTNAME@@</string>
+	</dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>activatorListener</key>
+			<string>@@PACKAGENAME@@</string>
+			<key>bundle</key>
+			<string>LibActivator</string>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>Activation Methods</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>@@PROJECTNAME@@</string>
+</dict>
+</plist>
