@@ -3,11 +3,18 @@ nicTemplates
 
 A set of NIC templates
 
-Files will include:
-- libactivator listener
-- libactivator event
-- anything else that has not one yet?
+Templates included:
 
+- Tweak
+- libactivator listener
+- Flipswitch switch
+- Notification Center widget
+
+Tempated planned to be included:
+
+- libactivator event
+- ActionMenu extension
+- Couria extension?
 
 ------------
-Overall layout and code is taken from https://github.com/rpetrich/libactivator/tree/master/example
+libactivator listener layout and code is taken from https://github.com/rpetrich/libactivator/tree/master/example
