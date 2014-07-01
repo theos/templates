@@ -1,27 +1,12 @@
-#include <libactivator/libactivator.h>
+#import <libactivator/libactivator.h>
 #include <dispatch/dispatch.h>
 
 #define LASendEventWithName(eventName) \
 	[LASharedActivator sendEventToListener:[LAEvent eventWithName:eventName mode:[LASharedActivator currentEventMode]]]
 
-static NSString const *@@PROJECTNAME@@_eventName = @"@@PROJECTNAME@@Event";
+static NSString *@@PROJECTNAME@@_eventName = @"@@PROJECTNAME@@Event";
 
-/*
-%hook ClassName
-
-// Hooking an instance method with an argument.
-- (void)messageName:(int)argument {
-	LASendEventWithName(@@PROJECTNAME@@_eventName);
-	%orig();
-}
-
-%end
-*/
-
-////////////////////////////////////////////////////////////////
-
-@interface @@PROJECTNAME@@DataSource : NSObject <LAEventDataSource> {
-}
+@interface @@PROJECTNAME@@DataSource : NSObject <LAEventDataSource> {}
 
 + (id)sharedInstance;
 
@@ -33,22 +18,20 @@ static NSString const *@@PROJECTNAME@@_eventName = @"@@PROJECTNAME@@Event";
 	static id sharedInstance = nil;
 	static dispatch_once_t token = 0;
 	dispatch_once(&token, ^{
-		sharedInstance = [[self alloc] init];
+		sharedInstance = [self new];
 	});
 	return sharedInstance;
 }
 
-- (id)init {
-	if ((self = [super init])) {
-		[LASharedActivator registerEventDataSource:self forEventName:@@PROJECTNAME@@_eventName];
-	}
-	return self;
++ (void)load {
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	// Register our event
+	[LASharedActivator registerEventDataSource:[self sharedInstance] forEventName:@@PROJECTNAME@@_eventName];
+	[pool release];
 }
 
 - (void)dealloc {
-	if (LASharedActivator.runningInsideSpringBoard) {
-		[LASharedActivator unregisterEventDataSourceWithEventName:@@PROJECTNAME@@_eventName];
-	}
+	[LASharedActivator unregisterEventDataSourceWithEventName:@@PROJECTNAME@@_eventName];
 	[super dealloc];
 }
 
@@ -84,7 +67,18 @@ static NSString const *@@PROJECTNAME@@_eventName = @"@@PROJECTNAME@@Event";
 
 @end
 
-%ctor {
-	[@@PROJECTNAME@@DataSource sharedInstance];
-	%init();
+////////////////////////////////////////////////////////////////
+
+// Event dispatch
+
+/*
+%hook ClassName
+
+// Hooking an instance method with an argument.
+- (void)messageName:(int)argument {
+	LASendEventWithName(@@PROJECTNAME@@_eventName);
+	%orig();
 }
+
+%end
+*/

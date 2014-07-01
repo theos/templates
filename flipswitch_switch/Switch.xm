@@ -5,10 +5,10 @@
 - (id)objectForKey:(NSString *)key inDomain:(NSString *)domain;
 - (void)setObject:(id)value forKey:(NSString *)key inDomain:(NSString *)domain;
 @end
- 
-static NSString const *nsDomainString = @"@@PACKAGENAME@@";
-static NSString const *nsNotificationString = @"@@PACKAGENAME@@/preferences.changed";
- 
+
+static NSString *nsDomainString = @"@@PACKAGENAME@@";
+static NSString *nsNotificationString = @"@@PACKAGENAME@@/preferences.changed";
+
 @interface @@PROJECTNAME@@Switch : NSObject <FSSwitchDataSource>
 @end
 

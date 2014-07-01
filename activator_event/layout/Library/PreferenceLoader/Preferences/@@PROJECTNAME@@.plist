@@ -23,7 +23,7 @@
 			<key>isController</key>
 			<true/>
 			<key>label</key>
-			<string>Activation Methods</string>
+			<string>Assign Actions</string>
 		</dict>
 	</array>
 	<key>title</key>

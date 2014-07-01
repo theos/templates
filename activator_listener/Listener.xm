@@ -3,27 +3,56 @@
 
 @interface @@PROJECTNAME@@ : NSObject <LAListener, UIAlertViewDelegate> {
 @private
-	UIAlertView *av;
+	UIAlertView *_av;
 }
+
++ (id)sharedInstance;
+
 @end
 
 @implementation @@PROJECTNAME@@
 
++ (id)sharedInstance {
+	static id sharedInstance = nil;
+	static dispatch_once_t token = 0;
+	dispatch_once(&token, ^{
+		sharedInstance = [self new];
+	});
+	return sharedInstance;
+}
+
++ (void)load {
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	// Register our listener
+	if (LASharedActivator.isRunningInsideSpringBoard) {
+		[LASharedActivator registerListener:[self sharedInstance] forName:@"@@PACKAGENAME@@"];
+	}
+	[pool release];
+}
+
+- (void)dealloc {
+	[_av release];
+	if (LASharedActivator.runningInsideSpringBoard) {
+		[LASharedActivator unregisterListenerWithName:@"@@PACKAGENAME@@"];
+	}
+	[super dealloc];
+}
+
 - (BOOL)dismiss {
 	// Ensures alert view is dismissed
 	// Returns YES if alert was visible previously
-	if (av) {
-		[av dismissWithClickedButtonIndex:[av cancelButtonIndex] animated:YES];
-		[av release];
-		av = nil;
+	if (_av) {
+		[_av dismissWithClickedButtonIndex:[_av cancelButtonIndex] animated:YES];
+		[_av release];
+		_av = nil;
 		return YES;
 	}
 	return NO;
 }
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
-	[av release];
-	av = nil;
+	[_av release];
+	_av = nil;
 }
 
 // LAListener protocol methods
@@ -31,8 +60,8 @@
 - (void)activator:(LAActivator *)activator receiveEvent:(LAEvent *)event {
 	// Called when we recieve event
 	if (![self dismiss]) {
-		av = [[UIAlertView alloc] initWithTitle:@"Example Listener" message:[event name] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-		[av show];
+		_av = [[UIAlertView alloc] initWithTitle:@"Example Listener" message:[event name] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		[_av show];
 		[event setHandled:YES];
 	}
 }
@@ -51,8 +80,9 @@
 - (void)activator:(LAActivator *)activator receiveDeactivateEvent:(LAEvent *)event {
 	// Called when the home button is pressed.
 	// If (and only if) we are showing UI, we should dismiss it and call setHandled:
-	if ([self dismiss])
+	if ([self dismiss]) {
 		[event setHandled:YES];
+	}
 }
 
 // Metadata
@@ -73,19 +103,5 @@
 	return [NSArray array];
 }
 */
-
-- (void)dealloc {
-	// Since this object lives for the lifetime of SpringBoard, this will never be called
-	// It's here for the sake of completeness
-	[av release];
-	[super dealloc];
-}
-
-+ (void)load {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	// Register our listener
-	[[LAActivator sharedInstance] registerListener:[self new] forName:@"@@PACKAGENAME@@"];
-	[pool release];
-}
 
 @end
