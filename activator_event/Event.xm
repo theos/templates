@@ -24,10 +24,15 @@ static NSString *@@PROJECTNAME@@_eventName = @"@@PROJECTNAME@@Event";
 }
 
 + (void)load {
-	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	// Register our event
-	[LASharedActivator registerEventDataSource:[self sharedInstance] forEventName:@@PROJECTNAME@@_eventName];
-	[pool release];
+	[self sharedInstance];
+}
+
+- (id)init {
+	if ((self = [super init])) {
+		// Register our event
+		[LASharedActivator registerEventDataSource:self forEventName:@@PROJECTNAME@@_eventName];
+	}
+	return self;
 }
 
 - (void)dealloc {
