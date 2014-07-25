@@ -1,9 +1,10 @@
+#include <objc/runtime.h>
 #import <libactivator/libactivator.h>
 #import <UIKit/UIKit.h>
 
 @interface @@PROJECTNAME@@ : NSObject <LAListener, UIAlertViewDelegate> {
 @private
-	UIAlertView *_av;
+	id _av;
 }
 
 + (id)sharedInstance;
@@ -60,7 +61,7 @@
 - (void)activator:(LAActivator *)activator receiveEvent:(LAEvent *)event {
 	// Called when we recieve event
 	if (![self dismiss]) {
-		_av = [[UIAlertView alloc] initWithTitle:@"Example Listener" message:[event name] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		_av = [[objc_getClass("UIAlertView") alloc] initWithTitle:@"Example Listener" message:[event name] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 		[_av show];
 		[event setHandled:YES];
 	}
