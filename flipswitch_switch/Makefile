@@ -7,3 +7,5 @@ BUNDLE_NAME = @@PROJECTNAME@@
 @@PROJECTNAME@@_INSTALL_PATH = /Library/Switches
 
 include $(THEOS_MAKE_PATH)/bundle.mk
+
+@@KILL_RULE@@
