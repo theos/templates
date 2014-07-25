@@ -2,19 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>title</key>
+	<string>@@PROJECTNAME@@</string>
 	<key>entry</key>
 	<dict>
 		<key>cell</key>
 		<string>PSLinkCell</string>
-		<key>icon</key>
-		<string>icon@2x.png</string>
 		<key>label</key>
 		<string>@@PROJECTNAME@@</string>
+		<key>icon</key>
+		<string>icon@2x.png</string>
 	</dict>
 	<key>items</key>
 	<array>
 	</array>
-	<key>title</key>
-	<string>@@PROJECTNAME@@</string>
 </dict>
 </plist>
