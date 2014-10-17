@@ -30,13 +30,17 @@ static NSString *@@PROJECTNAME@@_eventName = @"@@PROJECTNAME@@Event";
 - (id)init {
 	if ((self = [super init])) {
 		// Register our event
-		[LASharedActivator registerEventDataSource:self forEventName:@@PROJECTNAME@@_eventName];
+		if (LASharedActivator.isRunningInsideSpringBoard) {
+			[LASharedActivator registerEventDataSource:self forEventName:@@PROJECTNAME@@_eventName];
+		}
 	}
 	return self;
 }
 
 - (void)dealloc {
-	[LASharedActivator unregisterEventDataSourceWithEventName:@@PROJECTNAME@@_eventName];
+	if (LASharedActivator.isRunningInsideSpringBoard) {
+		[LASharedActivator unregisterEventDataSourceWithEventName:@@PROJECTNAME@@_eventName];
+	}
 	[super dealloc];
 }
 
