@@ -5,7 +5,7 @@
 	<key>entry</key>
 	<dict>
 		<key>cell</key>
-		<string>PSLinkCell</string>
+		<string>PSSwitchCell</string>
 		<key>defaults</key>
 		<string>@@PACKAGENAME@@</string>
 		<key>label</key>
