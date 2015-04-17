@@ -36,7 +36,7 @@ the generation of a class list and an automatic constructor.
 }
 
 // Hooking an instance method with an argument.
-- (void)messageName:(int)argument {
+- (void)messageName:(id)arg {
 	%log; // Write a message about this call, including its class, name and arguments, to the system log.
 
 	%orig; // Call through to the original function with its original arguments.
