@@ -39,7 +39,7 @@ static LAActivator *_LASharedActivator;
 		// Register our listener
 		if (_LASharedActivator) {
 			if (![_LASharedActivator hasSeenListenerWithName:bundleID]) {
-				[_LASharedActivator assignEvent:[%c(LAEvent) eventWithName:@"libactivator.volume.both.press"] toListenerWithName:bundleID];
+				[_LASharedActivator assignEvent:[objc_getClass("LAEvent") eventWithName:@"libactivator.volume.both.press"] toListenerWithName:bundleID];
 			}
 			if (_LASharedActivator.isRunningInsideSpringBoard) {
 				[_LASharedActivator registerListener:self forName:bundleID];
