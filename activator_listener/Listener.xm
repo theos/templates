@@ -42,10 +42,14 @@ static LAActivator *_LASharedActivator;
 		// Register our listener
 		if (_LASharedActivator) {
 			if (![_LASharedActivator hasSeenListenerWithName:bundleID]) {
+				// assign a default event for the listener
 				[_LASharedActivator assignEvent:[objc_getClass("LAEvent") eventWithName:@"libactivator.volume.both.press"] toListenerWithName:bundleID];
+				// If this listener should supply more than one `listener', assign more default events for more names
 			}
 			if (_LASharedActivator.isRunningInsideSpringBoard) {
+				// Register the listener
 				[_LASharedActivator registerListener:self forName:bundleID];
+				// If this listener should supply more than one `listener', register more names for `self'
 			}
 		}
 	}
@@ -106,7 +110,7 @@ static LAActivator *_LASharedActivator;
 }
 // Sent at the lock screen when listener is not compatible with event, but potentially is able to unlock the screen to handle it
 - (BOOL)activator:(LAActivator *)activator receiveUnlockingDeviceEvent:(LAEvent *)event forListenerName:(NSString *)listenerName {
-	// return YES if this listener handles unlocking the device
+	// If this listener handles unlocking the device, unlock it and return YES
 	return NO;
 }
 // Sent when the menu button is pressed. Only handle if you want to suppress the standard menu button behaviour!
@@ -159,7 +163,7 @@ static LAActivator *_LASharedActivator;
 }
 // Key querying
 - (id)activator:(LAActivator *)activator requiresInfoDictionaryValueOfKey:(NSString *)key forListenerWithName:(NSString *)listenerName {
-	NSLog(@"requiresInfoDictionaryValueOfKey: ", key);
+	NSLog(@"requiresInfoDictionaryValueOfKey: %@", key);
 	return nil;
 }
 // Powered display
@@ -172,6 +176,7 @@ static LAActivator *_LASharedActivator;
 // Icons
 
 //  Fast path that supports scale
+// The `scale' argument in the following two methods in an in-out variable. Read to provide the required image and set if you return a different scale.
 - (NSData *)activator:(LAActivator *)activator requiresIconDataForListenerName:(NSString *)listenerName scale:(CGFloat *)scale {
 	return nil;
 }
@@ -194,11 +199,13 @@ static LAActivator *_LASharedActivator;
 }
 // Glyph
 - (id)activator:(LAActivator *)activator requiresGlyphImageDescriptorForListenerName:(NSString *)listenerName {
+	// Return an NString with the path to a glyph image as described by Flipswitch's documentation
 	return nil;
 }
 
 // Removal (useful for dynamic listeners)
 
+// Activator can request a listener to collapse on itself and disappear
 - (BOOL)activator:(LAActivator *)activator requiresSupportsRemovalForListenerWithName:(NSString *)listenerName {
 	// if YES, activator:requestsRemovalForListenerWithName: will be called
 	return NO;
@@ -210,14 +217,18 @@ static LAActivator *_LASharedActivator;
 
 // Configuration view controller
 
+// These methods require a subclass of LAListenerConfigurationViewController to exist
 - (NSString *)activator:(LAActivator *)activator requiresConfigurationViewControllerClassNameForListenerWithName:(NSString *)listenerName bundle:(NSBundle **)outBundle {
+	// `outBundle' should be the bundle containing the configuration view controller subclass
 	*outBundle = [NSBundle bundleWithPath:@"/this/should/not/exist.bundle"];
 	return nil;
 }
 - (id)activator:(LAActivator *)activator requestsConfigurationForListenerWithName:(NSString *)listenerName {
+	// Return an NSPropertyList-serializable object that is passed into the configuration view controller
 	return nil;
 }
 - (void)activator:(LAActivator *)activator didSaveNewConfiguration:(id)configuration forListenerWithName:(NSString *)listenerName {
+	// Use the NSPropertyList-serializable `configuration' object from the previous method
 	return;
 }
 
