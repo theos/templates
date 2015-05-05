@@ -5,10 +5,13 @@ static NSString *bundleID = @"@@PACKAGENAME@@";
 static LAActivator *_LASharedActivator;
 
 @interface @@PROJECTNAME@@ : NSObject <LAListener> {
+	BOOL _isVisible;
 }
 
 + (id)sharedInstance;
 
+- (BOOL)present;
+- (BOOL)dismiss;
 @end
 
 @implementation @@PROJECTNAME@@
@@ -60,11 +63,23 @@ static LAActivator *_LASharedActivator;
 
 // Listener custom methods
 
+- (BOOL)presentOrDismiss {
+	if (_isVisible) {
+		return [self dismiss];
+	} else {
+		return [self present];
+	}
+}
+
 - (BOOL)present {
+	// Do UI stuff before this comment
+	_isVisible = YES;
 	return NO;
 }
 
 - (BOOL)dismiss {
+	// Do UI stuff before this comment
+	_isVisible = NO;
 	return NO;
 }
 
@@ -72,7 +87,6 @@ static LAActivator *_LASharedActivator;
 
 - (void)activator:(LAActivator *)activator didChangeToEventMode:(NSString *)eventMode {
 	[self dismiss];
-	
 }
 
 // Incoming events
@@ -80,7 +94,7 @@ static LAActivator *_LASharedActivator;
 // Normal assigned events
 - (void)activator:(LAActivator *)activator receiveEvent:(LAEvent *)event forListenerName:(NSString *)listenerName {
 	// Called when we receive event
-	if ([self present]) {
+	if ([self presentOrDismiss]) {
 		[event setHandled:YES];
 	}
 }
