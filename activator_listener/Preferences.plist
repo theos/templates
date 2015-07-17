@@ -15,7 +15,7 @@
 	<array>
 		<dict>
 			<key>activatorListener</key>
-			<string>@@PACKAGENAME@@</string>
+			<string>@@PACKAGENAME@@.listener</string>
 			<key>bundle</key>
 			<string>LibActivator</string>
 			<key>cell</key>

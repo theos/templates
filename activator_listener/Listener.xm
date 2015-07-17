@@ -1,7 +1,7 @@
 #include <objc/runtime.h>
 #import <libactivator/libactivator.h>
 
-static NSString *bundleID = @"@@PACKAGENAME@@";
+static NSString *bundleID = @"@@PACKAGENAME@@.listener";
 static LAActivator *_LASharedActivator;
 
 @interface @@PROJECTNAME@@ : NSObject <LAListener> {
