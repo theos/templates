@@ -4,7 +4,7 @@
 #define LASendEventWithName(eventName) \
 	[LASharedActivator sendEventToListener:[LAEvent eventWithName:eventName mode:[LASharedActivator currentEventMode]]]
 
-static NSString *@@PROJECTNAME@@_eventName = @"@@PROJECTNAME@@Event";
+static NSString *@@PROJECTNAME@@_eventName = @"@@PACKAGENAME@@.eventname";
 
 @interface @@PROJECTNAME@@DataSource : NSObject <LAEventDataSource> {}
 
