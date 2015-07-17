@@ -1,20 +1,31 @@
 #include <objc/runtime.h>
 #import <libactivator/libactivator.h>
 
-static NSString *bundleID = @"@@PACKAGENAME@@.listener";
-static LAActivator *_LASharedActivator;
-
-@interface @@PROJECTNAME@@ : NSObject <LAListener> {
+@interface @@PROJECTNAME@@Listener : NSObject <LAListener> {
 	BOOL _isVisible;
+	NSString *_bundleID;
 }
 
 + (id)sharedInstance;
 
 - (BOOL)present;
 - (BOOL)dismiss;
+
 @end
 
-@implementation @@PROJECTNAME@@
+static id sharedActivatorIfExists(void) {
+	static id *_LASharedActivator = nil;
+	static dispatch_once_t token = 0;
+	dispatch_once(&token, ^{
+		void *la = dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
+		if ((char *)la) {
+			_LASharedActivator = [objc_getClass("LAActivator") sharedInstance];
+		}
+	});
+	return _LASharedActivator;
+}
+
+@implementation @@PROJECTNAME@@Listener
 
 + (id)sharedInstance {
 	static id sharedInstance = nil;
@@ -26,29 +37,23 @@ static LAActivator *_LASharedActivator;
 }
 
 + (void)load {
-	void *la = dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
-	if (!(char *)la) {
-		NSLog(@"Failed to load libactivator");
-		_LASharedActivator = nil;
-	} else {
-		_LASharedActivator = [objc_getClass("LAActivator") sharedInstance];
-	}
-
 	[self sharedInstance];
 }
 
 - (id)init {
-	if ([super init]) {
+	if ((self = [super init])) {
+		_bundleID = @"@@PACKAGENAME@@.listener";
 		// Register our listener
+		LAActivator *_LASharedActivator = sharedActivatorIfExists();
 		if (_LASharedActivator) {
-			if (![_LASharedActivator hasSeenListenerWithName:bundleID]) {
+			if (![_LASharedActivator hasSeenListenerWithName:_bundleID]) {
 				// assign a default event for the listener
-				[_LASharedActivator assignEvent:[objc_getClass("LAEvent") eventWithName:@"libactivator.volume.both.press"] toListenerWithName:bundleID];
+				[_LASharedActivator assignEvent:[objc_getClass("LAEvent") eventWithName:@"libactivator.volume.both.press"] toListenerWithName:_bundleID];
 				// If this listener should supply more than one `listener', assign more default events for more names
 			}
 			if (_LASharedActivator.isRunningInsideSpringBoard) {
 				// Register the listener
-				[_LASharedActivator registerListener:self forName:bundleID];
+				[_LASharedActivator registerListener:self forName:_bundleID];
 				// If this listener should supply more than one `listener', register more names for `self'
 			}
 		}
@@ -57,15 +62,16 @@ static LAActivator *_LASharedActivator;
 }
 
 - (void)dealloc {
+	LAActivator *_LASharedActivator = sharedActivatorIfExists();
 	if (_LASharedActivator) {
 		if (_LASharedActivator.runningInsideSpringBoard) {
-			[_LASharedActivator unregisterListenerWithName:bundleID];
+			[_LASharedActivator unregisterListenerWithName:_bundleID];
 		}
 	} 
 	[super dealloc];
 }
 
-// Listener custom methods
+#pragma mark - Listener custom methods
 
 - (BOOL)presentOrDismiss {
 	if (_isVisible) {
@@ -87,13 +93,13 @@ static LAActivator *_LASharedActivator;
 	return NO;
 }
 
-// LAListener protocol methods
+#pragma mark - LAListener protocol methods
 
 - (void)activator:(LAActivator *)activator didChangeToEventMode:(NSString *)eventMode {
 	[self dismiss];
 }
 
-// Incoming events
+#pragma mark - Incoming events
 
 // Normal assigned events
 - (void)activator:(LAActivator *)activator receiveEvent:(LAEvent *)event forListenerName:(NSString *)listenerName {
@@ -128,10 +134,11 @@ static LAActivator *_LASharedActivator;
 }
 // Sent from the settings pane when a listener is assigned
 - (void)activator:(LAActivator *)activator receivePreviewEventForListenerName:(NSString *)listenerName {
-	
+	return;
 }
 
-// Metadata (may be cached)
+#pragma mark - Metadata (may be cached)
+
 // Listener name
 - (NSString *)activator:(LAActivator *)activator requiresLocalizedTitleForListenerName:(NSString *)listenerName {
 	return @"Example Listener";
@@ -173,7 +180,7 @@ static LAActivator *_LASharedActivator;
 	return YES;
 }
 
-// Icons
+#pragma mark - Icons
 
 //  Fast path that supports scale
 // The `scale' argument in the following two methods in an in-out variable. Read to provide the required image and set if you return a different scale.
@@ -203,7 +210,7 @@ static LAActivator *_LASharedActivator;
 	return nil;
 }
 
-// Removal (useful for dynamic listeners)
+#pragma mark - Removal (useful for dynamic listeners)
 
 // Activator can request a listener to collapse on itself and disappear
 - (BOOL)activator:(LAActivator *)activator requiresSupportsRemovalForListenerWithName:(NSString *)listenerName {
@@ -215,7 +222,7 @@ static LAActivator *_LASharedActivator;
 	return;
 }
 
-// Configuration view controller
+#pragma mark - Configuration view controller
 
 // These methods require a subclass of LAListenerConfigurationViewController to exist
 - (NSString *)activator:(LAActivator *)activator requiresConfigurationViewControllerClassNameForListenerWithName:(NSString *)listenerName bundle:(NSBundle **)outBundle {
