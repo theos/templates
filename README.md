@@ -6,11 +6,11 @@ A set of NIC templates
 Templates included:
 - Tweak
 - libactivator listener
+- libactivator event
 - Flipswitch switch
 - Notification Center widget
 
 Templates planned to be included:
-- libactivator event
 - ActionMenu extension
 - Couria extension?
 
@@ -19,5 +19,10 @@ How to use this:
 - Place that template in `$THEOS/templates/iphone`.
 - Run `nic.pl` and select the desired template.
 
+Alternatively:
+- Run build.sh; It will prompt for root priviledges to copy templates to `$THEOS/templates/iphones`.
+
 ------------
-libactivator listener layout and code is taken from https://github.com/rpetrich/libactivator/tree/master/example
+Tweak template is a modified version of the template found in https://github.com/DHowett/theos/tree/master/templates/iphone/tweak.nic.tar.
+
+libactivator listener template is a modified version of https://github.com/rpetrich/libactivator/tree/master/example.

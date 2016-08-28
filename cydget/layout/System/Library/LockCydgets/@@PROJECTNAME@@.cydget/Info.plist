@@ -1,0 +1,5 @@
+{
+	CYPlugin = "@@PROJECTNAME@@LockScreen";
+	CYTagline = "Some cydget";
+	Name = "@@FULLPROJECTNAME@@";
+}

@@ -2,23 +2,23 @@
 - (id)objectForKey:(NSString *)key inDomain:(NSString *)domain;
 - (void)setObject:(id)value forKey:(NSString *)key inDomain:(NSString *)domain;
 @end
- 
-static NSString const *nsDomainString = @"@@PACKAGENAME@@";
-static NSString const *nsNotificationString = @"@@PACKAGENAME@@/preferences.changed";
+
+static NSString *nsDomainString = @"@@PACKAGENAME@@";
+static NSString *nsNotificationString = @"@@PACKAGENAME@@/preferences.changed";
 static BOOL enabled;
- 
+
 static void notificationCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
 	NSNumber *n = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:@"enabled" inDomain:nsDomainString];
 	enabled = (n)? [n boolValue]:YES;
 }
- 
+
 %ctor {
 // Set variables on start up
 	notificationCallback(NULL, NULL, NULL, NULL, NULL);
- 
+
 // Register for 'PostNotification' notifications
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, notificationCallback, (CFStringRef)nsNotificationString, NULL, CFNotificationSuspensionBehaviorCoalesce);
- 
+
 // Add any personal initializations
 
 }
@@ -36,7 +36,7 @@ the generation of a class list and an automatic constructor.
 }
 
 // Hooking an instance method with an argument.
-- (void)messageName:(int)argument {
+- (void)messageName:(id)arg {
 	%log; // Write a message about this call, including its class, name and arguments, to the system log.
 
 	%orig; // Call through to the original function with its original arguments.
