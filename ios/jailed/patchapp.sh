@@ -3,9 +3,9 @@
 #
 # You shouldn't need to change these unless you have multiple Dev certs
 #
+IPA="app.ipa"
 COMMAND=$1
-IPA=$2
-MOBILEPROVISION=$3
+MOBILEPROVISION=$2
 DEV_CERT_NAME="iPhone Developer"
 CODESIGN_NAME=`security dump-keychain login.keychain|grep "$DEV_CERT_NAME"|head -n1|cut -f4 -d \"|cut -f1 -d\"`
 TMPDIR=".patchapp.cache"
@@ -17,7 +17,7 @@ DYLIB=".theos/obj/@@PROJECTNAME@@.dylib"
 function usage {
 	if [ "$2" == "" -o "$1" == "" ]; then
 		cat <<USAGE
-Usage: $0 <command> file.ipa [file.mobileprovision | your.bundle.id | -w]
+Usage: $0 <command> [file.mobileprovision | your.bundle.id | -w]
 Where 'command' is one of:
 	info    - Show the information required to create a Provisioning Profile
 	          that matches the specified .ipa file
@@ -91,8 +91,8 @@ function ipa_info {
 = What to do now =
 ==================
 1. Build your Theos tweak if you haven't already done so. Just run "make".
-2. Create a provisioning profile for this app (run "$0 info $IPA" for help)
-3. Run "$0 install $IPA file.mobileprovision" to patch and install the .ipa 
+2. Create a provisioning profile for this app (run "$0 info" for help)
+3. Run "$0 install file.mobileprovision" to patch and install the .ipa 
    (you can even specify a bundle id or '-w' to use a wildcard profile)
 
 =====================================
@@ -176,9 +176,9 @@ INFO
 	Note: You can't install over the top of the real application,
 	      so it must be deleted first. This only needs to be done
 	      once per patched application.
-2. Run "$0 install $IPA file.mobileprovision" as described above
+2. Run "$0 install file.mobileprovision" as described above
 3. If "$0 install" did not work for whatever reason, use 
-   "$0 patch $IPA file.mobileprovision", and do the following
+   "$0 patch file.mobileprovision", and do the following
 	a. In Xcode goto Window / Devices
 	b. Under "Installed Apps" click the + button
 	c. Browse to the patched .ipa file and cross your fingers
@@ -190,7 +190,7 @@ INFO
 Do all of the things mentioned under "What to do now", above.
 Make sure that the provisioning profile contains the correct entitlements (see above).
 Once you've installed the provisioning profile on your device, run the following command:
-    $0 patch $IPA [file.mobileprovision | your.bundle.id | -w]
+    $0 patch [file.mobileprovision | your.bundle.id | -w]
 
 Bundle ID: $BUNDLE_ID
 Required Entitlements: 
