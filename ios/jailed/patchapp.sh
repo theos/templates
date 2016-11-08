@@ -1,12 +1,6 @@
 #!/bin/bash
 
 #
-# You might need to change these
-#
-OPTOOL="/usr/local/bin/optool"
-IOSDEPLOY="/usr/local/bin/ios-deploy"
-
-#
 # You shouldn't need to change these unless you have multiple Dev certs
 #
 COMMAND=$1
@@ -71,8 +65,8 @@ function setup_environment {
 	APP=${APP##*/}
 	APPDIR=$TMPDIR/Payload/$APP
 	cd "$SAVED_PATH"
-	BUNDLE_ID=`plutil -convert xml1 -o - $APPDIR/Info.plist|grep -A1 CFBundleIdentifier|tail -n1|cut -f2 -d\>|cut -f1 -d\<`-patched
-	APP_BINARY=`plutil -convert xml1 -o - $APPDIR/Info.plist|grep -A1 Exec|tail -n1|cut -f2 -d\>|cut -f1 -d\<`
+	BUNDLE_ID=`defaults read $(pwd)/$APPDIR/Info.plist CFBundleIdentifier`-patched
+	APP_BINARY=`defaults read $(pwd)/$APPDIR/Info.plist CFBundleExecutable`
 }
 
 #
@@ -245,9 +239,9 @@ function ipa_patch {
 		MOBILEPROVISION="$BUNDLEPROVISION"
 	fi
 
-	if [ ! -x "$OPTOOL" ]; then
+	if ! hash "optool" 2>/dev/null; then
 		echo "You need to install optool from here: https://github.com/alexzielenski/optool"
-		echo "Then update OPTOOL variable in '$0' to reflect the correct path to the optool binary."
+		echo "Then add it to your PATH."
 		exit 1
 	fi
 
@@ -279,7 +273,7 @@ function ipa_patch {
 		echo "Failed to grab executable name from Info.plist. Debugging required."
 		exit 1
 	fi
-	$OPTOOL install -c load -p "@executable_path/"${DYLIB##*/} -t $APPDIR/$APP_BINARY >& /dev/null
+	optool install -c load -p "@executable_path/"${DYLIB##*/} -t $APPDIR/$APP_BINARY >& /dev/null
 	if [ "$?" != "0" ]; then
 		echo "Failed to inject "${DYLIB##*/}" into $APPDIR/${APP_BINARY}. Can I interest you in debugging the problem?"
 		exit 1
@@ -341,13 +335,13 @@ XML
 }
 
 function ipa_deploy {
-	if [ ! -f "$IOSDEPLOY" ]; then
+	if ! hash "ios-deploy" 2>/dev/null; then
 		echo "You need to install ios-deploy from here: https://github.com/phonegap/ios-deploy#installation"
-		echo "Then update IOSDEPLOY variable in '$0' to reflect the correct path to the ios-deploy binary."
+		echo "Then add it to your PATH."
 		exit 1
 	fi
 	ipa_patch
-	$IOSDEPLOY -$1Wb $APP
+	ios-deploy -$1Wb $APP
 }
 
 #
