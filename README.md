@@ -28,4 +28,4 @@ Tweak template is a modified version of the template found in https://github.com
 
 libactivator listener template is a modified version of https://github.com/rpetrich/libactivator/tree/master/example.
 
-Jailed template is a modified version of the template found in https://github.com/BishopFox/theos-jailed/blob/master/templates/iphone/tweak.nic.tar
+Jailed template is a modified version of the template and makefiles found in https://github.com/BishopFox/theos-jailed/
