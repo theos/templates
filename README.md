@@ -9,6 +9,7 @@ Templates included:
 - libactivator event
 - Flipswitch switch
 - Notification Center widget
+- Jailed
 
 Templates planned to be included:
 - ActionMenu extension
@@ -26,3 +27,5 @@ Alternatively:
 Tweak template is a modified version of the template found in https://github.com/DHowett/theos/tree/master/templates/iphone/tweak.nic.tar.
 
 libactivator listener template is a modified version of https://github.com/rpetrich/libactivator/tree/master/example.
+
+Jailed template is a modified version of the template and makefiles found in https://github.com/BishopFox/theos-jailed/
