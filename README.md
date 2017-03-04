@@ -26,3 +26,5 @@ Alternatively:
 Tweak template is a modified version of the template found in https://github.com/DHowett/theos/tree/master/templates/iphone/tweak.nic.tar.
 
 libactivator listener template is a modified version of https://github.com/rpetrich/libactivator/tree/master/example.
+
+application_swift is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/application.nic.tar 
