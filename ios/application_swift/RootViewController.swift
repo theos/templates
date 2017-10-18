@@ -14,7 +14,7 @@ class RootViewController: UITableViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
 	}
 
-	func addButtonTapped(_ sender: Any) {
+	@objc func addButtonTapped(_ sender: Any) {
 		objects.insert(Date(), at: 0)
 		tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
 	}
