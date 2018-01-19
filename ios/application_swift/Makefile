@@ -7,8 +7,5 @@ APPLICATION_NAME = @@PROJECTNAME@@
 
 include $(THEOS_MAKE_PATH)/application.mk
 
-before-package::
-	$(ECHO_NOTHING)sed -i "" -e "/^[Dd]epends:/s/libswift/&$$(swift -version|cut -d' ' -f4|cut -d'.' -f1) (>= $$(swift -version|cut -d' ' -f4))/g" $(THEOS_STAGING_DIR)/DEBIAN/control$(ECHO_END)
-
 after-install::
 	install.exec "killall \"@@PROJECTNAME@@\"" || true
