@@ -1,4 +1,3 @@
-TARGET = ::7.0
 include @@THEOS@@/makefiles/common.mk
 
 APPLICATION_NAME = @@PROJECTNAME@@
