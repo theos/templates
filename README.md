@@ -29,4 +29,4 @@ libactivator listener template is a modified version of https://github.com/rpetr
 
 application_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/application.nic.tar 
 
-tweak_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/tool.nic.tar 
+tool_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/tool.nic.tar 
