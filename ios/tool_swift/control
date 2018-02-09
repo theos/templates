@@ -1,6 +1,6 @@
 Package: @@PACKAGENAME@@
 Name: @@FULLPROJECTNAME@@
-Depends: org.swift.libswift
+Depends: ${LIBSWIFT}
 Version: 0.0.1
 Architecture: iphoneos-arm
 Description: An awesome tool of some sort!!

@@ -6,4 +6,4 @@ Description: An awesome application!
 Maintainer: @@USER@@
 Author: @@USER@@
 Section: Utilities
-Depends: org.swift.libswift
+Depends: ${LIBSWIFT}
