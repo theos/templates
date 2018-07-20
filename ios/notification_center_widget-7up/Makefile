@@ -1,4 +1,5 @@
-include theos/makefiles/common.mk
+@@KILL_PROCS@@
+include @@THEOS@@/makefiles/common.mk
 
 BUNDLE_NAME = @@PROJECTNAME@@
 @@PROJECTNAME@@_FILES = @@PROJECTNAME@@ViewController.m
@@ -7,5 +8,3 @@ BUNDLE_NAME = @@PROJECTNAME@@
 @@PROJECTNAME@@_PRIVATE_FRAMEWORKS = SpringBoardUIServices
 
 include $(THEOS_MAKE_PATH)/bundle.mk
-
-@@KILL_RULE@@
