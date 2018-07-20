@@ -1,3 +1,5 @@
+@@KILL_PROCS@@
+
 include @@THEOS@@/makefiles/common.mk
 
 BUNDLE_NAME = @@PROJECTNAME@@
@@ -6,5 +8,3 @@ BUNDLE_NAME = @@PROJECTNAME@@
 @@PROJECTNAME@@_INSTALL_PATH = /Library/WeeLoader/Plugins
 
 include $(THEOS_MAKE_PATH)/bundle.mk
-
-@@KILL_RULE@@

@@ -1,4 +1,6 @@
-include theos/makefiles/common.mk
+@@KILL_PROCS@@
+
+include @@THEOS@@/makefiles/common.mk
 
 BUNDLE_NAME = @@PROJECTNAME@@LockScreen
 @@PROJECTNAME@@LockScreen_FILES = @@PROJECTNAME@@.mm
@@ -7,5 +9,3 @@ BUNDLE_NAME = @@PROJECTNAME@@LockScreen
 @@PROJECTNAME@@LockScreen_INSTALL_PATH = /System/Library/SpringBoardPlugins/
 
 include $(THEOS_MAKE_PATH)/bundle.mk
-
-@@KILL_RULE@@
