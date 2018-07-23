@@ -1,5 +1,3 @@
-@@KILL_PROCS@@
-
 include @@THEOS@@/makefiles/common.mk
 
 BUNDLE_NAME = @@PROJECTNAME@@
@@ -7,7 +5,7 @@ BUNDLE_NAME = @@PROJECTNAME@@
 @@PROJECTNAME@@_FRAMEWORKS = UIKit
 @@PROJECTNAME@@_LIBRARIES = flipswitch
 @@PROJECTNAME@@_INSTALL_PATH = /Library/Switches
-
+@@KILL_PROCS@@
 include $(THEOS_MAKE_PATH)/bundle.mk
 
 internal-stage::

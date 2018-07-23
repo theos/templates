@@ -1,11 +1,9 @@
-@@KILL_PROCS@@
-
 include @@THEOS@@/makefiles/common.mk
 
 TWEAK_NAME = @@PROJECTNAME@@
 @@PROJECTNAME@@_FILES = Listener.xm
 @@PROJECTNAME@@_LIBRARIES = activator
-
+@@KILL_PROCS@@
 include $(THEOS_MAKE_PATH)/tweak.mk
 
 internal-stage::
