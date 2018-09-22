@@ -1,0 +1,5 @@
+name "iphone/application_single_view"
+
+
+constrain file "control" to package
+constrain "theos" to link_theos
