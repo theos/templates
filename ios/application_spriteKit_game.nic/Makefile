@@ -1,11 +1,12 @@
 include @@THEOS@@/makefiles/common.mk
 
 APPLICATION_NAME = @@PROJECTNAME@@
-$(APPLICATION_NAME)_FILES = $(wildcard *.m)
 
-$(APPLICATION_NAME)_FRAMEWORKS = UIKit CoreGraphics SpriteKit
+@@PROJECTNAME@@_FILES = $(wildcard *.m)
 
-$(APPLICATION_NAME)_CFLAGS = -fobjc-arc
+@@PROJECTNAME@@_FRAMEWORKS = UIKit CoreGraphics SpriteKit
+
+@@PROJECTNAME@@_CFLAGS = -fobjc-arc
 
 
 include $(THEOS_MAKE_PATH)/application.mk
