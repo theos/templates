@@ -1,17 +1,15 @@
 #import "@@CLASSPREFIX@@RootViewController.h"
 
-@interface @@CLASSPREFIX@@RootViewController 
-@property (nonatomic, retain) NSMutableArray * objects;
+@interface @@CLASSPREFIX@@RootViewController ()
+@property (nonatomic, strong) NSMutableArray * objects;
 @end
 
-@implementation @@CLASSPREFIX@@RootViewController {
-	NSMutableArray *_objects;
-}
+@implementation @@CLASSPREFIX@@RootViewController
 
 - (void)loadView {
 	[super loadView];
 
-	_objects = [[NSMutableArray alloc] init];
+	_objects = [NSMutableArray array];
 
 	self.title = @"Root View Controller";
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -38,7 +36,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
 	if (!cell) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	}
 
 	NSDate *date = _objects[indexPath.row];

@@ -1,8 +1,11 @@
+#import <Foundation/Foundation.h>
+#import <libactivator/libactivator.h>
+
 // Event dispatch
 
-/*
 #define LASendEventWithName(eventName) \
 	[LASharedActivator sendEventToListener:[LAEvent eventWithName:eventName mode:[LASharedActivator currentEventMode]]]
+
 
 static NSString *_bundleID = @"@@PACKAGENAME@@.event";
 
@@ -15,4 +18,3 @@ static NSString *_bundleID = @"@@PACKAGENAME@@.event";
 }
 
 %end
-*/

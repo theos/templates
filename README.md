@@ -4,11 +4,16 @@ nicTemplates
 A set of NIC templates
 
 Templates included:
-- Tweak
+- Application (Objective-C and Swift)
+- CLI Tool (Objective-C and Swift)
+- Tweak (empty or with a simple preference switch)
+- Library
+- Framework
 - libactivator listener
 - libactivator event
 - Flipswitch switch
-- Notification Center widget
+- XPC service
+- Notification Center widget (iOS 5/6 and iOS 7+)
 
 Templates planned to be included:
 - ActionMenu extension
@@ -27,6 +32,6 @@ Tweak template is a modified version of the template found in https://github.com
 
 libactivator listener template is a modified version of https://github.com/rpetrich/libactivator/tree/master/example.
 
-application_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/application.nic.tar 
+application_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/application.nic.tar
 
-tool_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/tool.nic.tar 
+tool_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/tool.nic.tar

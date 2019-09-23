@@ -1,33 +1,18 @@
 #include <objc/runtime.h>
 #import <libactivator/libactivator.h>
 
-@interface @@PROJECTNAME@@Listener : NSObject <LAListener> {
-	BOOL _isVisible;
-	NSString *_bundleID;
-}
+static NSString *bundleID = @"@@PACKAGENAME@@";
+static LAActivator *_LASharedActivator;
+
+@interface @@PROJECTNAME@@ : NSObject <LAListener>
 
 + (id)sharedInstance;
 
-- (BOOL)present;
-- (BOOL)dismiss;
-
 @end
 
-static id sharedActivatorIfExists(void) {
-	static id *_LASharedActivator = nil;
-	static dispatch_once_t token = 0;
-	dispatch_once(&token, ^{
-		void *la = dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
-		if ((char *)la) {
-			_LASharedActivator = [objc_getClass("LAActivator") sharedInstance];
-		}
-	});
-	return _LASharedActivator;
-}
+@implementation @@PROJECTNAME@@
 
-@implementation @@PROJECTNAME@@Listener
-
-+ (id)sharedInstance {
++ (instancetype)sharedInstance {
 	static id sharedInstance = nil;
 	static dispatch_once_t token = 0;
 	dispatch_once(&token, ^{
@@ -37,24 +22,26 @@ static id sharedActivatorIfExists(void) {
 }
 
 + (void)load {
+	void *la = dlopen("/usr/lib/libactivator.dylib", RTLD_LAZY);
+	if (!la) {
+		HBLogDebug(@"Failed to load libactivator");
+		_LASharedActivator = nil;
+	} else {
+		_LASharedActivator = [objc_getClass("LAActivator") sharedInstance];
+	}
+
 	[self sharedInstance];
 }
 
-- (id)init {
-	if ((self = [super init])) {
-		_bundleID = @"@@PACKAGENAME@@.listener";
+- (instancetype)init {
+	if ([super init]) {
 		// Register our listener
-		LAActivator *_LASharedActivator = sharedActivatorIfExists();
 		if (_LASharedActivator) {
-			if (![_LASharedActivator hasSeenListenerWithName:_bundleID]) {
-				// assign a default event for the listener
-				[_LASharedActivator assignEvent:[objc_getClass("LAEvent") eventWithName:@"libactivator.volume.both.press"] toListenerWithName:_bundleID];
-				// If this listener should supply more than one `listener', assign more default events for more names
+			if (![_LASharedActivator hasSeenListenerWithName:bundleID]) {
+				[_LASharedActivator assignEvent:[objc_getClass("LAEvent") eventWithName:@"libactivator.volume.both.press"] toListenerWithName:bundleID];
 			}
 			if (_LASharedActivator.isRunningInsideSpringBoard) {
-				// Register the listener
-				[_LASharedActivator registerListener:self forName:_bundleID];
-				// If this listener should supply more than one `listener', register more names for `self'
+				[_LASharedActivator registerListener:self forName:bundleID];
 			}
 		}
 	}
@@ -62,49 +49,37 @@ static id sharedActivatorIfExists(void) {
 }
 
 - (void)dealloc {
-	LAActivator *_LASharedActivator = sharedActivatorIfExists();
 	if (_LASharedActivator) {
 		if (_LASharedActivator.runningInsideSpringBoard) {
-			[_LASharedActivator unregisterListenerWithName:_bundleID];
+			[_LASharedActivator unregisterListenerWithName:bundleID];
 		}
-	} 
+	}
 	[super dealloc];
 }
 
-#pragma mark - Listener custom methods
-
-- (BOOL)presentOrDismiss {
-	if (_isVisible) {
-		return [self dismiss];
-	} else {
-		return [self present];
-	}
-}
+// Listener custom methods
 
 - (BOOL)present {
-	// Do UI stuff before this comment
-	_isVisible = YES;
 	return NO;
 }
 
 - (BOOL)dismiss {
-	// Do UI stuff before this comment
-	_isVisible = NO;
 	return NO;
 }
 
-#pragma mark - LAListener protocol methods
+// LAListener protocol methods
 
 - (void)activator:(LAActivator *)activator didChangeToEventMode:(NSString *)eventMode {
 	[self dismiss];
+
 }
 
-#pragma mark - Incoming events
+// Incoming events
 
 // Normal assigned events
 - (void)activator:(LAActivator *)activator receiveEvent:(LAEvent *)event forListenerName:(NSString *)listenerName {
 	// Called when we receive event
-	if ([self presentOrDismiss]) {
+	if ([self present]) {
 		[event setHandled:YES];
 	}
 }
@@ -116,7 +91,7 @@ static id sharedActivatorIfExists(void) {
 }
 // Sent at the lock screen when listener is not compatible with event, but potentially is able to unlock the screen to handle it
 - (BOOL)activator:(LAActivator *)activator receiveUnlockingDeviceEvent:(LAEvent *)event forListenerName:(NSString *)listenerName {
-	// If this listener handles unlocking the device, unlock it and return YES
+	// return YES if this listener handles unlocking the device
 	return NO;
 }
 // Sent when the menu button is pressed. Only handle if you want to suppress the standard menu button behaviour!
@@ -134,11 +109,10 @@ static id sharedActivatorIfExists(void) {
 }
 // Sent from the settings pane when a listener is assigned
 - (void)activator:(LAActivator *)activator receivePreviewEventForListenerName:(NSString *)listenerName {
-	return;
+
 }
 
-#pragma mark - Metadata (may be cached)
-
+// Metadata (may be cached)
 // Listener name
 - (NSString *)activator:(LAActivator *)activator requiresLocalizedTitleForListenerName:(NSString *)listenerName {
 	return @"Example Listener";
@@ -170,7 +144,7 @@ static id sharedActivatorIfExists(void) {
 }
 // Key querying
 - (id)activator:(LAActivator *)activator requiresInfoDictionaryValueOfKey:(NSString *)key forListenerWithName:(NSString *)listenerName {
-	NSLog(@"requiresInfoDictionaryValueOfKey: %@", key);
+	HBLogDebug(@"requiresInfoDictionaryValueOfKey: ", key);
 	return nil;
 }
 // Powered display
@@ -180,10 +154,9 @@ static id sharedActivatorIfExists(void) {
 	return YES;
 }
 
-#pragma mark - Icons
+// Icons
 
 //  Fast path that supports scale
-// The `scale' argument in the following two methods in an in-out variable. Read to provide the required image and set if you return a different scale.
 - (NSData *)activator:(LAActivator *)activator requiresIconDataForListenerName:(NSString *)listenerName scale:(CGFloat *)scale {
 	return nil;
 }
@@ -206,13 +179,11 @@ static id sharedActivatorIfExists(void) {
 }
 // Glyph
 - (id)activator:(LAActivator *)activator requiresGlyphImageDescriptorForListenerName:(NSString *)listenerName {
-	// Return an NString with the path to a glyph image as described by Flipswitch's documentation
 	return nil;
 }
 
-#pragma mark - Removal (useful for dynamic listeners)
+// Removal (useful for dynamic listeners)
 
-// Activator can request a listener to collapse on itself and disappear
 - (BOOL)activator:(LAActivator *)activator requiresSupportsRemovalForListenerWithName:(NSString *)listenerName {
 	// if YES, activator:requestsRemovalForListenerWithName: will be called
 	return NO;
@@ -222,20 +193,16 @@ static id sharedActivatorIfExists(void) {
 	return;
 }
 
-#pragma mark - Configuration view controller
+// Configuration view controller
 
-// These methods require a subclass of LAListenerConfigurationViewController to exist
 - (NSString *)activator:(LAActivator *)activator requiresConfigurationViewControllerClassNameForListenerWithName:(NSString *)listenerName bundle:(NSBundle **)outBundle {
-	// `outBundle' should be the bundle containing the configuration view controller subclass
 	*outBundle = [NSBundle bundleWithPath:@"/this/should/not/exist.bundle"];
 	return nil;
 }
 - (id)activator:(LAActivator *)activator requestsConfigurationForListenerWithName:(NSString *)listenerName {
-	// Return an NSPropertyList-serializable object that is passed into the configuration view controller
 	return nil;
 }
 - (void)activator:(LAActivator *)activator didSaveNewConfiguration:(id)configuration forListenerWithName:(NSString *)listenerName {
-	// Use the NSPropertyList-serializable `configuration' object from the previous method
 	return;
 }
 

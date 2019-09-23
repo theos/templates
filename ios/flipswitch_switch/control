@@ -1,10 +1,9 @@
 Package: @@PACKAGENAME@@
 Name: @@FULLPROJECTNAME@@
-Description: A simple switch for the Flipswitch API!
 Version: 0.0.1
-Priority: optional
-Section: Addons (Flipswitch)
 Architecture: iphoneos-arm
-Depends: mobilesubstrate, com.a3tweaks.flipswitch
+Description: A simple switch for the Flipswitch API!
 Maintainer: @@USER@@
 Author: @@USER@@
+Section: Addons (Flipswitch)
+Depends: mobilesubstrate (>= 0.9.5000), com.a3tweaks.flipswitch

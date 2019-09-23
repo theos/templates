@@ -1,8 +1,11 @@
-TARGET = ::7.0
+TARGET = iphone:clang:latest:7.0
+
 include @@THEOS@@/makefiles/common.mk
 
 TOOL_NAME = @@PROJECTNAME@@
+
 @@PROJECTNAME@@_FILES = main.swift
 @@PROJECTNAME@@_INSTALL_PATH = /usr/local/bin
+@@PROJECTNAME@@_CFLAGS = -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/tool.mk

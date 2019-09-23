@@ -1,5 +1,4 @@
 name "iphone/application_modern"
-prompt CLASSPREFIX "Class name prefix (two or more characters)" "XX"
-
-constrain file "control" to package
+constrain "control" to package
 constrain "theos" to link_theos
+prompt CLASSPREFIX "Class name prefix (two or more characters)" "XX"

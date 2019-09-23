@@ -1,3 +1,5 @@
+#import <UIKit/UIKit.h>
+
 @protocol _SBUIWidgetHost <NSObject>
 
 - (void)invalidatePreferredViewSize;

@@ -15,7 +15,7 @@
 	<array>
 		<dict>
 			<key>activatorEvent</key>
-			<string>@@PACKAGENAME@@.event</string>
+			<string>@@PACKAGENAME@@</string>
 			<key>bundle</key>
 			<string>LibActivator</string>
 			<key>cell</key>

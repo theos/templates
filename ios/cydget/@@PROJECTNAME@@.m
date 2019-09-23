@@ -1,11 +1,12 @@
+#import <UIKit/UIKit.h>
+
 @interface SBAwayViewPluginController : NSObject
 @end
 
 @interface @@PROJECTNAME@@LockScreenController : SBAwayViewPluginController
 @end
 
-@interface @@PROJECTNAME@@LockScreenView : UIView {
-}
+@interface @@PROJECTNAME@@LockScreenView : UIView
 @end
 
 @implementation @@PROJECTNAME@@LockScreenController
@@ -15,41 +16,41 @@
 }
 
 - (void) loadView {
-    [self setView:[[[@@PROJECTNAME@@LockScreenView alloc] init] autorelease]];
+    [self setView:[[@@PROJECTNAME@@LockScreenView new] autorelease]];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    
+- (void)viewWillAppear:(BOOL)animated {
+
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    
+- (void)viewDidAppear:(BOOL)animated {
+
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    
+- (void)viewWillDisappear:(BOOL)animated {
+
 }
 
--(void)viewDidDisappear:(BOOL)animated {
-    
+- (void)viewDidDisappear:(BOOL)animated {
+
 }
 
 // Return YES if you handle the event
--(BOOL)handleMenuButtonTap {
+- (BOOL)handleMenuButtonTap {
     return NO;
 }
--(BOOL)handleMenuButtonDoubleTap {
+- (BOOL)handleMenuButtonDoubleTap {
     return NO;
 }
--(BOOL)handleMenuButtonHeld {
+- (BOOL)handleMenuButtonHeld {
     return NO;
 }
--(BOOL)handleGesture:(int)gestureType fingerCount:(unsigned)count {
+- (BOOL)handleGesture:(int)gestureType fingerCount:(unsigned)count {
     return NO;
 }
 
 // Return NO to hide the lockscreen clock
--(BOOL)showAwayItems {
+- (BOOL)showAwayItems {
     return YES;
 }
 
@@ -57,7 +58,7 @@
 
 @implementation @@PROJECTNAME@@LockScreenView
 
-- (id) init {
+- (id)init {
     CGRect frame = [[UIScreen mainScreen] bounds];
     if ((self = [super initWithFrame:frame])) {
         // Initialize stuff
@@ -65,9 +66,4 @@
     return self;
 }
 
-- (void)dealloc {
-    
-    [super dealloc];
-}
-
-@end 
+@end

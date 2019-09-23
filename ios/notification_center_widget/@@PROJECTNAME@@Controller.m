@@ -2,31 +2,21 @@
 
 static NSBundle *_@@PROJECTNAME@@WeeAppBundle = nil;
 
-@interface @@PROJECTNAME@@Controller: NSObject <BBWeeAppController> {
-	UIView *_view;
-	UIImageView *_backgroundView;
-}
-@property (nonatomic, retain) UIView *view;
+@interface @@PROJECTNAME@@Controller: NSObject <BBWeeAppController>
+@property (nonatomic, strong) UIView *view;
+@property (nonatomic, strong) UIImageView *backgroundView;
 @end
 
 @implementation @@PROJECTNAME@@Controller
-@synthesize view = _view;
 
 + (void)initialize {
 	_@@PROJECTNAME@@WeeAppBundle = [[NSBundle bundleForClass:[self class]] retain];
 }
 
-- (id)init {
-	if ((self = [super init]) != nil) {
+- (instancetype)init {
+	if ((self = [super init])) {
 		// Custom initialization
 	} return self;
-}
-
-- (void)dealloc {
-	[_view release];
-	[_backgroundView release];
-
-	[super dealloc];
 }
 
 - (void)loadFullView {
@@ -50,16 +40,13 @@ static NSBundle *_@@PROJECTNAME@@WeeAppBundle = nil;
 }
 
 - (void)unloadView {
-	[_view release];
 	_view = nil;
-
-	[_backgroundView release];
 	_backgroundView = nil;
 
 	// Destroy any additional subviews you added here. Don't waste memory :(.
 }
 
-- (float)viewHeight {
+- (CGFloat)viewHeight {
 	return 71.f;
 }
 

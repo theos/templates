@@ -1,6 +1,8 @@
+#import <UIKit/UIKit.h>
+
 @protocol BBWeeAppController <NSObject>
 @required
-- (id)view;
+- (UIView *)view;
 @optional
 - (void)loadPlaceholderView;
 - (void)loadFullView;
@@ -9,12 +11,12 @@
 - (void)clearShapshotImage;
 - (id)launchURL;
 - (id)launchURLForTapLocation:(CGPoint)tapLocation;
-- (float)viewHeight;
+- (CGFloat)viewHeight;
 - (void)viewWillAppear;
 - (void)viewDidAppear;
 - (void)viewWillDisappear;
 - (void)viewDidDisappear;
-- (void)willAnimateRotationToInterfaceOrientation:(int)interfaceOrientation;
-- (void)willRotateToInterfaceOrientation:(int)interfaceOrientation;
-- (void)didRotateFromInterfaceOrientation:(int)interfaceOrientation;
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end

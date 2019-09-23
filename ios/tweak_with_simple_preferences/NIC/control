@@ -1,0 +1,4 @@
+name "iphone/tweak_with_simple_preferences"
+constrain "control" to package
+constrain "theos" to link_theos
+prompt FILTER "MobileSubstrate Bundle filter" "com.apple.springboard"
