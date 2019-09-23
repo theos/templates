@@ -1,3 +1,6 @@
+THEOS_LEAN_AND_MEAN = 1
+INSTALL_TARGET_PROCESSES = @@PROJECTNAME@@
+
 include @@THEOS@@/makefiles/common.mk
 
 APPLICATION_NAME = @@PROJECTNAME@@
@@ -7,6 +10,3 @@ APPLICATION_NAME = @@PROJECTNAME@@
 @@PROJECTNAME@@_CFLAGS = -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/application.mk
-
-after-install::
-	install.exec "killall \"@@PROJECTNAME@@\"" || true

@@ -1,3 +1,4 @@
+THEOS_LEAN_AND_MEAN = 1
 include @@THEOS@@/makefiles/common.mk
 
 TOOL_NAME = @@PROJECTNAME@@

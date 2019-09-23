@@ -1,3 +1,4 @@
+THEOS_LEAN_AND_MEAN = 1
 @@KILL_RULE@@
 include @@THEOS@@/makefiles/common.mk
 
