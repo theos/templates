@@ -4,7 +4,7 @@ include @@THEOS@@/makefiles/common.mk
 
 TWEAK_NAME = @@PROJECTNAME@@
 
-@@PROJECTNAME@@_FILES = Event.x Tweak.x
+@@PROJECTNAME@@_FILES = Event.x
 @@PROJECTNAME@@_LIBRARIES = activator
 @@PROJECTNAME@@_CFLAGS = -fobjc-arc
 
