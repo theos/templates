@@ -1,16 +1,16 @@
 #include <objc/runtime.h>
 #import <libactivator/libactivator.h>
 
-static NSString *bundleID = @"@@PACKAGENAME@@";
+static NSString *bundleID = @"@@PACKAGENAME@@Listener";
 static LAActivator *_LASharedActivator;
 
-@interface @@PROJECTNAME@@ : NSObject <LAListener>
+@interface @@PROJECTNAME@@Listener : NSObject <LAListener>
 
 + (id)sharedInstance;
 
 @end
 
-@implementation @@PROJECTNAME@@
+@implementation @@PROJECTNAME@@Listener
 
 + (instancetype)sharedInstance {
 	static id sharedInstance = nil;
