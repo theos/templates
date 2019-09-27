@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface SBAwayViewPluginController : NSObject
+@interface SBAwayViewPluginController : UIViewController
 @end
 
 @interface @@PROJECTNAME@@LockScreenController : SBAwayViewPluginController
@@ -11,12 +11,12 @@
 
 @implementation @@PROJECTNAME@@LockScreenController
 
-+ (id) rootViewController {
-    return [[[self alloc] init] autorelease];
++ (instancetype)rootViewController {
+    return [self new];
 }
 
-- (void) loadView {
-    [self setView:[[@@PROJECTNAME@@LockScreenView new] autorelease]];
+- (void)loadView {
+    [self setView:[@@PROJECTNAME@@LockScreenView new]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,7 +58,7 @@
 
 @implementation @@PROJECTNAME@@LockScreenView
 
-- (id)init {
+- (instancetype)init {
     CGRect frame = [[UIScreen mainScreen] bounds];
     if ((self = [super initWithFrame:frame])) {
         // Initialize stuff

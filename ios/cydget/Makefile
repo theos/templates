@@ -1,10 +1,12 @@
-THEOS_LEAN_AND_MEAN = 1
+TARGET := iphone:clang:latest:7.0
 @@KILL_RULE@@
+
+THEOS_LEAN_AND_MEAN = 1
 include @@THEOS@@/makefiles/common.mk
 
 BUNDLE_NAME = @@PROJECTNAME@@LockScreen
 
-@@PROJECTNAME@@LockScreen_FILES = @@PROJECTNAME@@.mm
+@@PROJECTNAME@@LockScreen_FILES = @@PROJECTNAME@@.m
 @@PROJECTNAME@@LockScreen_FRAMEWORKS = UIKit
 @@PROJECTNAME@@LockScreen_PRIVATE_FRAMEWORKS = SpringBoardUI
 @@PROJECTNAME@@LockScreen_INSTALL_PATH = /System/Library/SpringBoardPlugins/

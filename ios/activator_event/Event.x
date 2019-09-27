@@ -15,7 +15,7 @@ static NSString *@@PROJECTNAME@@_eventName = @"@@PROJECTNAME@@Event";
 @implementation @@PROJECTNAME@@DataSource
 
 + (instancetype)sharedInstance {
-	static @@PROJECTNAME@@DataSource sharedInstance = nil;
+	static @@PROJECTNAME@@DataSource * sharedInstance = nil;
 	static dispatch_once_t token = 0;
 	dispatch_once(&token, ^{
 		sharedInstance = [self new];
@@ -41,7 +41,6 @@ static NSString *@@PROJECTNAME@@_eventName = @"@@PROJECTNAME@@Event";
 	if (LASharedActivator.isRunningInsideSpringBoard) {
 		[LASharedActivator unregisterEventDataSourceWithEventName:@@PROJECTNAME@@_eventName];
 	}
-	[super dealloc];
 }
 
 - (NSString *)localizedTitleForEventName:(NSString *)eventName {

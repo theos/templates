@@ -1,4 +1,5 @@
 #include <objc/runtime.h>
+#include <dlfcn.h>
 #import <libactivator/libactivator.h>
 
 static NSString *bundleID = @"@@PACKAGENAME@@Listener";
@@ -54,7 +55,6 @@ static LAActivator *_LASharedActivator;
 			[_LASharedActivator unregisterListenerWithName:bundleID];
 		}
 	}
-	[super dealloc];
 }
 
 // Listener custom methods
@@ -144,7 +144,7 @@ static LAActivator *_LASharedActivator;
 }
 // Key querying
 - (id)activator:(LAActivator *)activator requiresInfoDictionaryValueOfKey:(NSString *)key forListenerWithName:(NSString *)listenerName {
-	HBLogDebug(@"requiresInfoDictionaryValueOfKey: ", key);
+	HBLogDebug(@"requiresInfoDictionaryValueOfKey: %@", key);
 	return nil;
 }
 // Powered display

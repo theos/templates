@@ -13,7 +13,7 @@
 
 	self.title = @"Root View Controller";
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped:)] autorelease];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped:)];
 }
 
 - (void)addButtonTapped:(id)sender {
