@@ -1,7 +1,6 @@
 TARGET := iphone:clang:latest:7.0
 @@KILL_RULE@@
 
-THEOS_LEAN_AND_MEAN = 1
 include @@THEOS@@/makefiles/common.mk
 
 BUNDLE_NAME = @@PROJECTNAME@@

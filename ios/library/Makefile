@@ -1,6 +1,5 @@
 TARGET := iphone:clang:latest:7.0
 
-THEOS_LEAN_AND_MEAN = 1
 include @@THEOS@@/makefiles/common.mk
 
 LIBRARY_NAME = @@PROJECTNAME@@

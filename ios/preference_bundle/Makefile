@@ -1,4 +1,3 @@
-THEOS_LEAN_AND_MEAN = 1
 include @@THEOS@@/makefiles/common.mk
 
 BUNDLE_NAME = @@PROJECTNAME@@
