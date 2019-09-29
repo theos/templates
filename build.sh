@@ -9,6 +9,7 @@ for d in $templateDirs; do
 	for f in $templateSubDirs; do
 		# Build the template
 		nicify.pl $f
+		mv *.nic.tar ../
 	done
 	popd &> /dev/null
 done
