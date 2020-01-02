@@ -1,8 +1,12 @@
+TARGET := iphone:clang:latest:7.0
+
 include @@THEOS@@/makefiles/common.mk
 
-TOOL_NAME = xpcclient
+TOOL_NAME = @@PROJECTNAME@@_client
 
-xpcclient_FILES = main.m
-xpcclient_CFLAGS = -fobjc-arc
+@@PROJECTNAME@@_client_FILES = main.m
+@@PROJECTNAME@@_client_CFLAGS = -fobjc-arc
+@@PROJECTNAME@@_CODESIGN_FLAGS = -Sentitlements.plist
+@@PROJECTNAME@@_INSTALL_PATH = /usr/local/bin
 
 include $(THEOS_MAKE_PATH)/tool.mk
