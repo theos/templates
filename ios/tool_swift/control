@@ -1,6 +1,5 @@
 Package: @@PACKAGENAME@@
 Name: @@FULLPROJECTNAME@@
-Depends: ${LIBSWIFT}
 Version: 0.0.1
 Architecture: iphoneos-arm
 Description: An awesome tool of some sort!!
@@ -8,3 +7,4 @@ Maintainer: @@USER@@
 Author: @@USER@@
 Section: System
 Tag: role::hacker
+Depends: ${LIBSWIFT}

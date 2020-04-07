@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>entry</key>
+	<dict>
+		<key>cell</key>
+		<string>PSLinkCell</string>
+		<key>icon</key>
+		<string>/Applications/Preferences.app/icon-table@2x.png</string>
+		<key>label</key>
+		<string>@@PROJECTNAME@@</string>
+	</dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>activatorEvent</key>
+			<string>@@PACKAGENAME@@Event</string>
+			<key>bundle</key>
+			<string>LibActivator</string>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>Assign Actions</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>@@PROJECTNAME@@</string>
+</dict>
+</plist>

@@ -1,6 +1,8 @@
+#import <UIKit/UIKit.h>
+
 @interface @@CLASSPREFIX@@AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) UINavigationController *rootViewController;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) UINavigationController *rootViewController;
 
 @end

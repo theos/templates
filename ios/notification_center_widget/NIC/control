@@ -1,3 +1,3 @@
 name "iphone/notification_center_widget"
-constrain file "control" to package
+constrain "control" to package
 constrain "theos" to link_theos

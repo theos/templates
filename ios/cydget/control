@@ -1,9 +1,9 @@
 Package: @@PACKAGENAME@@
 Name: @@FULLPROJECTNAME@@
-Depends: cydget
 Version: 0.0.1
 Architecture: iphoneos-arm
 Description: An awesome Cydget!
 Maintainer: @@USER@@
 Author: @@USER@@
 Section: Addons (Cydget)
+Depends: cydget
