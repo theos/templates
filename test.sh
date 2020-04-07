@@ -2,6 +2,7 @@
 
 ./build.sh
 
+mkdir -p build
 pushd build
 
 for n in ../*.nic.tar
@@ -15,4 +16,4 @@ end
 
 popd
 
-rm -r build/*
+rm -r build

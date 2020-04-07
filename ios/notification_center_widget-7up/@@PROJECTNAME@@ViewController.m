@@ -1,12 +1,6 @@
 #import "@@PROJECTNAME@@ViewController.h"
 
-NSBundle *bundle = nil;
-
 @implementation @@PROJECTNAME@@ViewController
-
-+ (void)initialize {
-	bundle = [[NSBundle bundleForClass:self.class] retain];
-}
 
 - (void)loadView {
 	[super loadView];
@@ -15,8 +9,9 @@ NSBundle *bundle = nil;
 	 Set up UI here. Called when SpringBoard is launching.
 	 Access resources from your bundle via the private method
 	 +[UIImage imageNamed:inBundle:], passing in the bundle
-	 variable set above.
+	 variable set below.
 	*/
+	//NSBundle *my_bundle = [NSBundle bundleForClass:[self class]];
 }
 
 - (CGSize)preferredViewSize {

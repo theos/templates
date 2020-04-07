@@ -1,17 +1,11 @@
 #import "BBWeeAppController-Protocol.h"
 
-static NSBundle *_@@PROJECTNAME@@WeeAppBundle = nil;
-
 @interface @@PROJECTNAME@@Controller: NSObject <BBWeeAppController>
 @property (nonatomic, strong) UIView *view;
 @property (nonatomic, strong) UIImageView *backgroundView;
 @end
 
 @implementation @@PROJECTNAME@@Controller
-
-+ (void)initialize {
-	_@@PROJECTNAME@@WeeAppBundle = [[NSBundle bundleForClass:[self class]] retain];
-}
 
 - (instancetype)init {
 	if ((self = [super init])) {
@@ -28,9 +22,10 @@ static NSBundle *_@@PROJECTNAME@@WeeAppBundle = nil;
 	// data loading operations.
 	//
 	// All widgets are 316 points wide. Image size calculations match those of the Stocks widget.
-	_view = [[UIView alloc] initWithFrame:(CGRect){CGPointZero, {316.f, [self viewHeight]}}];
+	_view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 316.f, [self viewHeight])];
 	_view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
+	//NSBundle *my_bundle = [NSBundle bundleForClass:[self class]];
 	UIImage *bgImg = [UIImage imageWithContentsOfFile:@"/System/Library/WeeAppPlugins/StocksWeeApp.bundle/WeeAppBackground.png"];
 	UIImage *stretchableBgImg = [bgImg stretchableImageWithLeftCapWidth:floorf(bgImg.size.width / 2.f) topCapHeight:floorf(bgImg.size.height / 2.f)];
 	_backgroundView = [[UIImageView alloc] initWithImage:stretchableBgImg];

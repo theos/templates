@@ -18,6 +18,7 @@ A set of NIC templates
 - Notification Center widget (iOS 5/6 and iOS 7+)
 
 Templates planned to be included:
+
 - ActionMenu extension
 - Couria extension?
 
