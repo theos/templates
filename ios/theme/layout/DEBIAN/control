@@ -1,0 +1,9 @@
+Package: @@PACKAGENAME@@
+Name: @@FULLPROJECTNAME@@
+Depends: com.spark.snowboard
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome theme of some sort!!
+Maintainer: @@USER@@
+Author: @@USER@@
+Section: Themes
