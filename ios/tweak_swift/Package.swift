@@ -24,7 +24,8 @@ let package = Package(
     targets: [
         .target(
             name: "@@PROJECTNAME@@C",
-            dependencies: [.product(name: "Substrate", package: "Orion")]
+            dependencies: [.product(name: "Substrate", package: "Orion")],
+            cxxSettings: [.unsafeFlags(["-fcxx-modules"])]
         ),
         .target(
             name: "@@PROJECTNAME@@",
