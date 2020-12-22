@@ -3,11 +3,28 @@
 import PackageDescription
 import Foundation
 
-guard let theosPath = ProcessInfo.processInfo.environment["THEOS"] else {
+guard let theosPath = ProcessInfo.processInfo.environment["THEOS"],
+      let projectDir = ProcessInfo.processInfo.environment["PWD"]
+else {
     fatalError("""
     THEOS env var not set. If you're using Xcode, open this package with `make dev`
     """)
 }
+
+let libFlags: [String] = [
+    "-F\(theosPath)/vendor/lib", "-F\(theosPath)/lib",
+    "-I\(theosPath)/vendor/include", "-I\(theosPath)/include"
+]
+
+let cFlags: [String] = libFlags + [
+    "-Wno-unused-command-line-argument", "-Qunused-arguments",
+]
+
+let cxxFlags: [String] = [
+]
+
+let swiftFlags: [String] = libFlags + [
+]
 
 let package = Package(
     name: "@@PROJECTNAME@@",
@@ -18,18 +35,16 @@ let package = Package(
             targets: ["@@PROJECTNAME@@"]
         ),
     ],
-    dependencies: [
-        .package(name: "Orion", path: "\(theosPath)/vendor/swift-support/orion")
-    ],
     targets: [
         .target(
             name: "@@PROJECTNAME@@C",
-            dependencies: [.product(name: "Substrate", package: "Orion")],
-            cxxSettings: [.unsafeFlags(["-fcxx-modules"])]
+            cSettings: [.unsafeFlags(cFlags)],
+            cxxSettings: [.unsafeFlags(cxxFlags)]
         ),
         .target(
             name: "@@PROJECTNAME@@",
-            dependencies: ["@@PROJECTNAME@@C", "Orion"]
+            dependencies: ["@@PROJECTNAME@@C"],
+            swiftSettings: [.unsafeFlags(swiftFlags)]
         ),
     ]
 )

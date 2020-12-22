@@ -1,7 +1,4 @@
-@import Foundation;
-@import Substrate;
-
-FOUNDATION_EXTERN void orion_init(void);
+#import <Orion/Orion.h>
 
 __attribute__((constructor)) static void init() {
     // Initialize Orion - do not remove this line.
