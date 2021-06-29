@@ -1,3 +1,4 @@
+#import <Foundation/Foundation.h>
 #import "@@CLASSPREFIX@@AppDelegate.h"
 
 int main(int argc, char *argv[]) {

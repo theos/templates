@@ -1,9 +1,6 @@
+#import <CoreFoundation/CoreFoundation.h>
 #import <Foundation/Foundation.h>
-
-@interface NSUserDefaults (Tweak_Category)
-- (id)objectForKey:(NSString *)key inDomain:(NSString *)domain;
-- (void)setObject:(id)value forKey:(NSString *)key inDomain:(NSString *)domain;
-@end
+#import <Foundation/NSUserDefaults+Private.h>
 
 static NSString * nsDomainString = @"@@PACKAGENAME@@";
 static NSString * nsNotificationString = @"@@PACKAGENAME@@/preferences.changed";
