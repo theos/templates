@@ -19,12 +19,12 @@
 
 // Icon of your module
 - (UIImage *)iconGlyph {
-    return [UIImage imageNamed:@"icon" inBundle:[NSBundle bundleForClass:[self class]]];
+    return [UIImage imageNamed:@"icon" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 }
 
 // Optional: Icon of your module, once selected 
 - (UIImage *)selectedIconGlyph {
-    return [UIImage imageNamed:@"icon-selected" inBundle:[NSBundle bundleForClass:[self class]]];
+    return [UIImage imageNamed:@"icon-selected" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 }
 
 // Selected color of your module
