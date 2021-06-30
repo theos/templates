@@ -1,4 +1,5 @@
 #import <Foundation/NSRunLoop.h>
+#import <HBLog.h>
 #include <xpc/xpc.h>
 
 int main(int argc, char *argv[], char *envp[]) {

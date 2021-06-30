@@ -1,4 +1,5 @@
-#include "@@CLASSPREFIX@@RootListController.h"
+#import <Foundation/Foundation.h>
+#import "@@CLASSPREFIX@@RootListController.h"
 
 @implementation @@CLASSPREFIX@@RootListController
 
