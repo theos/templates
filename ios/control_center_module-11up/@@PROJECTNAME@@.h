@@ -1,7 +1,5 @@
 #import <ControlCenterUIKit/CCUIToggleModule.h>
 
-@interface @@PROJECTNAME@@ : CCUIToggleModule {
-    BOOL _selected;
-}
+@interface @@PROJECTNAME@@ : CCUIToggleModule
 
 @end
