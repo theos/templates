@@ -1,0 +1,2 @@
+#!/bin/sh
+launchctl unload /Library/LaunchDaemons/@@PACKAGENAME@@.plist 2>&1 > /dev/null

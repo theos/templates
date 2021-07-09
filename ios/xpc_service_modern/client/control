@@ -1,0 +1,9 @@
+Package: @@PACKAGENAME@@-client
+Name: XPC Client
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An even more awesome XPC service client!
+Maintainer: @@USER@@
+Author: @@USER@@
+Section: System
+Tag: role::hacker
