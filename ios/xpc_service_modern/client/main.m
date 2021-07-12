@@ -12,7 +12,7 @@ int main(int argc, char *argv[], char *envp[]) {
   __block NSString *result;
 	// Use dispatch_semaphore to wait for the reply (if you don't care about iOS <9 support, you can use synchronousRemoteObjectProxyWithErrorHandler:)
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-  [connection.remoteObjectProxy lowercaseStringForString:userInput reply:^(NSString *reply) {
+    [connection.remoteObjectProxy lowercaseStringForString:userInput reply:^(NSString *reply) {
 		result = reply;
 		dispatch_semaphore_signal(semaphore);
 	}];
