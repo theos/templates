@@ -14,7 +14,8 @@ int proc_pidpath(int pid, void * buffer, uint32_t  buffersize);
   if (ret <= 0) {
     printf("Error getting connecting process pid/executable path, refusing connection\n");
     return NO;
-  } else if (strcmp(pathbuf, "/usr/local/bin/@@PROJECTNAME@@_client") != 0) { // Change this path according to match the installation path of the process you want to allow to connect
+  }
+  if (strcmp(pathbuf, "/usr/local/bin/@@PROJECTNAME@@_client") != 0) { // Change this path according to match the installation path of the process you want to allow to connect
     printf("You shall not pass!\n");
     return NO;
   }
