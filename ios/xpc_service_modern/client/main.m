@@ -17,7 +17,7 @@ int main(int argc, char *argv[], char *envp[]) {
 		dispatch_semaphore_signal(semaphore);
 	}];
 	dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-  [connection invalidate];
+    [connection invalidate];
 	printf("Got reply from XPC service: %s\n", result.UTF8String);
 	return 0;
 }
