@@ -1,4 +1,3 @@
-#import <ControlCenterUIKit/CCUICAPackageDescription.h> // Remove this import you don't use CAML approach
 #import "@@PROJECTNAME@@.h"
 
 @implementation @@PROJECTNAME@@
