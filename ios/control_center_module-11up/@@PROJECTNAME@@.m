@@ -2,8 +2,9 @@
 
 @implementation @@PROJECTNAME@@
 
-// Most third-party Control Center modules out there use non-CAML approach because it's easier to get images than create CAML
-// You can delete the CAML approach section from your final code, unless you want to be a little more cool
+// Most third-party Control Center modules out there use non-CAML approach because it's easier to get icon images than create CAML
+// Choose either CAML and non-CAML portion of the code for your final implementation of the toggle
+// IMPORTANT: To prepare your icons and configure the toggle to its fullest, check out CCSupport Wiki: https://github.com/opa334/CCSupport/wiki
 
 #pragma mark - CAML approach
 
@@ -41,9 +42,9 @@
 
 - (void)setSelected:(BOOL)selected {
     if (selected) {
-        // Your module got selected, do something
+        // Your module turned selected/on, do something
     } else {
-        // Your module got unselected, do something
+        // Your module turned unselected/off, do something
     }
 }
 
