@@ -1,7 +1,7 @@
 nicTemplates
 ============
 
-A set of NIC templates
+A set of [NIC](https://theos.dev/docs/nic) templates
 
 # Templates included:
 
@@ -30,7 +30,7 @@ Templates planned to be included:
 
 ## Interactive
 
-	$ $THEOS/bin/nic.pl
+	$ nic.pl
 
 - Select the desired template
 - Input the values for each query
