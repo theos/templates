@@ -13,7 +13,7 @@ A set of [NIC](https://theos.dev/docs/nic) templates
 - Framework
 - Library
 - Notification Center widget (iOS 5/6 and iOS 7+)
-- Preference bundle
+- Preference bundle (Objective-C and Swift)
 - Theme
 - CLI Tool (Objective-C and Swift)
 - Tweak (bare or with a simple preference switch)
