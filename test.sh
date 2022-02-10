@@ -3,18 +3,20 @@
 ./build.sh
 
 mkdir -p build
-pushd build
+pushd build &> /dev/null
 
-for n in ../*.nic.tar
-do
+# For each NIC template
+for n in ../*.nic.tar; do
 	nicname=$(basename $n .nic.tar)
 	projname=${nicname#*_}"_example"
+	# Initialize a project (and accept defaults for special fields)
 	echo | $THEOS/bin/nic.pl -p $nicname -n $projname -u X --nic $n
-	pushd ${projname/"-"/""}
+	pushd ${projname/"-"/""} &> /dev/null
+	# Build the project
 	make all
-	popd
+	popd &> /dev/null
 done
 
-popd
+popd &> /dev/null
 
 rm -r build
