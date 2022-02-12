@@ -1,9 +1,8 @@
-nicTemplates
-============
+# Theos NIC Templates
 
 A set of NIC templates
 
-# Templates included:
+## Templates included:
 
 - Application (Objective-C and Swift)
 - CLI Tool (Objective-C and Swift)
@@ -22,24 +21,24 @@ Templates planned to be included:
 - ActionMenu extension
 - Couria extension?
 
-# Usage:
+## Usage:
 
-## Interactive
+### Interactive
 
 	$ $THEOS/nic.pl
 
 - Select the desired template.
 - Input the values for each query
 
-## Programmatic
+### Programmatic
 
 	$ nic.pl -p "package.name" -n "ProjectName" -u "User name" --nic template.nic.tar
 
-# Building:
+## Building the templates repo:
 
-	$ build.sh
+	$ ./build.sh
 
-------------
+---
 
 Tweak template is a modified version of the template found in https://github.com/DHowett/theos/tree/master/templates/iphone/tweak.nic.tar.
 
