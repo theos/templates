@@ -1,20 +1,24 @@
 # Theos NIC Templates
 
-A set of NIC templates
+A set of [NIC](https://theos.dev/docs/nic) templates
 
 ## Templates included:
 
-- Application (Objective-C and Swift)
-- CLI Tool (Objective-C and Swift)
-- Tweak (empty or with a simple preference switch)
-- Library
-- Framework
-- libactivator listener
 - libactivator event
-- Flipswitch switch
+- libactivator listener
+- Application (Objective-C and Swift)
+- Control Center module (iOS 11+)
 - Cydget
-- XPC service
+- Flipswitch switch
+- Framework
+- Library
 - Notification Center widget (iOS 5/6 and iOS 7+)
+- Preference bundle (Objective-C and Swift)
+- Theme
+- CLI Tool (Objective-C and Swift)
+- Tweak (bare or with a simple preference switch)
+- XPC service
+
 
 Templates planned to be included:
 
@@ -25,9 +29,9 @@ Templates planned to be included:
 
 ### Interactive
 
-	$ $THEOS/nic.pl
+	$ nic.pl
 
-- Select the desired template.
+- Select the desired template
 - Input the values for each query
 
 ### Programmatic

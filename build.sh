@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 set -e
 
 # For each directory containing one or more valid NIC templates' source

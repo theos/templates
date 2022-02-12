@@ -1,6 +1,7 @@
 #include <objc/runtime.h>
 #include <dlfcn.h>
 #import <libactivator/libactivator.h>
+#import <HBLog.h>
 
 static NSString *bundleID = @"@@PACKAGENAME@@Listener";
 static LAActivator *_LASharedActivator;
