@@ -6,4 +6,4 @@ Description: An awesome SwiftUI application!
 Maintainer: @@USER@@
 Author: @@USER@@
 Section: Utilities
-Depends: ${LIBSWIFT}
+Depends: ${LIBSWIFT}, firmware (>= 14.0)
