@@ -2,16 +2,21 @@
 
 ./build.sh
 
+if [[ -d build ]]; then
+	rm -r build
+fi
+
 mkdir -p build
 pushd build &> /dev/null
 
 # For each NIC template
 for n in ../*.nic.tar; do
 	nicname=$(basename $n .nic.tar)
-	projname=${nicname#*_}"_example"
+	projname=${nicname#*_}
+	valid_projname=${projname//[-]/_}
 	# Initialize a project (and accept defaults for special fields)
-	echo | $THEOS/bin/nic.pl -p $nicname -n $projname -u X --nic $n
-	pushd ${projname/"-"/""} &> /dev/null
+	yes | $THEOS/bin/nic.pl -p $nicname -n $valid_projname -u X --nic $n
+	pushd ${valid_projname//[_]/} &> /dev/null
 	# Build the project
 	make all
 	popd &> /dev/null
