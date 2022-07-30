@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 set -e
 
 if [[ "$#" -gt 1 || "$1" == "--help" || "$1" == "-h" ]]; then
