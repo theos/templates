@@ -13,10 +13,13 @@ pushd build &> /dev/null
 for n in ../*.nic.tar; do
 	nicname=$(basename $n .nic.tar)
 	projname=${nicname#*_}
-	valid_projname=${projname//[-]/_}
+	# Pkg names can't have anything other than alphanum and -+.
+	# Class names can't have anything other than alphanum
+	# So strip all but alphanum so projects that pull the project name compile
+	valid_projname=${projname//[^[:alnum:]]/}
 	# Initialize a project (and accept defaults for special fields)
 	yes | $THEOS/bin/nic.pl -p $nicname -n $valid_projname -u X --nic $n
-	pushd ${valid_projname//[_]/} &> /dev/null
+	pushd $valid_projname &> /dev/null
 	# Build the project
 	make all
 	popd &> /dev/null
