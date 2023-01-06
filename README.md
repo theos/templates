@@ -39,10 +39,21 @@ Templates planned to be included:
 
 	$ nic.pl -p "package.name" -n "ProjectName" -u "User name" --nic template.nic.tar
 
-## Building the templates repo:
+## Building your own template
+
+- Copy a preexisting directory from ./ios/ OR run denicify.pl on a preexisting .nic.tar
+- Rename the resulting directory
+- Edit its contents as desired
+- Run nicify.pl on it
+	- Note: the resulting template can be placed in nic/templates/ for use with the NIC (i.e., nic.pl)
+
+## Building the entire templates repo:
 
 	$ ./build.sh
 
+## Testing the templates repo:
+
+	$ ./test.sh
 ---
 
 Tweak template is a modified version of the template found in https://github.com/DHowett/theos/tree/master/templates/iphone/tweak.nic.tar.
