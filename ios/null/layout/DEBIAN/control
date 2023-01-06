@@ -1,0 +1,7 @@
+Package: @@PACKAGENAME@@
+Name: @@FULLPROJECTNAME@@
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: A blank slate!
+Maintainer: @@USER@@
+Author: @@USER@@
