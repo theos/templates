@@ -56,10 +56,16 @@ Templates planned to be included:
 	$ ./test.sh
 ---
 
-Tweak template is a modified version of the template found in https://github.com/DHowett/theos/tree/master/templates/iphone/tweak.nic.tar.
+Includes templates modified from the following:
 
-libactivator listener template is a modified version of https://github.com/rpetrich/libactivator/tree/master/example.
+- cydget, framework, notification_center_widget, and xpc_service
+	- Source: https://github.com/DHowett/theos-nic-templates.
 
-application_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/application.nic.tar
+- notification_center_widget-7up
+ 	- Source: https://github.com/sharedInstance/iOS-7-Notification-Center-Widget-Template.
 
-tool_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/tool.nic.tar
+- tweak, application, and tool
+	- Source: https://github.com/theos/theos/tree/legacy/templates/iphone.
+
+- activator_listener
+	- Source: https://github.com/rpetrich/libactivator/tree/master/example.
