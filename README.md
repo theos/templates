@@ -20,12 +20,6 @@ A set of [NIC](https://theos.dev/docs/nic) templates
 - Tweak (bare or with a simple preference switch)
 - XPC service
 
-
-Templates planned to be included:
-
-- ActionMenu extension
-- Couria extension?
-
 ## Usage:
 
 ### Interactive
@@ -47,7 +41,7 @@ Templates planned to be included:
 - Run nicify.pl on it
 	- Note: the resulting template can be placed in nic/templates/ for use with the NIC (i.e., nic.pl)
 
-## Building the entire templates repo:
+## Building the templates repo:
 
 	$ ./build.sh
 
