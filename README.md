@@ -6,7 +6,7 @@ A set of [NIC](https://theos.dev/docs/nic) templates
 
 - libactivator event
 - libactivator listener
-- Application (Objective-C and Swift)
+- Application (Objective-C, Swift, and SwiftUI)
 - Control Center module (iOS 11+)
 - Cydget
 - Flipswitch switch
@@ -18,6 +18,7 @@ A set of [NIC](https://theos.dev/docs/nic) templates
 - CLI Tool (Objective-C and Swift)
 - Tweak (bare or with a simple preference switch)
 - XPC service
+- Safari extension
 
 
 Templates planned to be included:
