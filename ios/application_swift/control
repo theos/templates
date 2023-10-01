@@ -6,4 +6,4 @@ Description: An awesome application!
 Maintainer: @@USER@@
 Author: @@USER@@
 Section: Utilities
-Depends: ${LIBSWIFT}
+Depends: firmware (>= 12.2) | ${LIBSWIFT}
