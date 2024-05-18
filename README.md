@@ -13,17 +13,12 @@ A set of [NIC](https://theos.dev/docs/nic) templates
 - Framework
 - Library
 - Notification Center widget (iOS 5/6 and iOS 7+)
+- Null
 - Preference bundle (Objective-C and Swift)
 - Theme
 - CLI Tool (Objective-C and Swift)
 - Tweak (bare or with a simple preference switch)
 - XPC service
-
-
-Templates planned to be included:
-
-- ActionMenu extension
-- Couria extension?
 
 ## Usage:
 
@@ -38,16 +33,26 @@ Templates planned to be included:
 
 	$ nic.pl -p "package.name" -n "ProjectName" -u "User name" --nic template.nic.tar
 
-## Building the templates repo:
+## Building your own template
 
-	$ ./build.sh
+- Copy a preexisting directory from ./ios/ OR run `denicify.pl` on a preexisting .nic.tar
+- Rename the resulting directory
+- Edit its contents as desired
+- Run `nicify.pl` on it
+	- Note: the resulting template can be placed in $THEOS/templates/ for use with the NIC (i.e., `nic.pl`)
 
 ---
 
-Tweak template is a modified version of the template found in https://github.com/DHowett/theos/tree/master/templates/iphone/tweak.nic.tar.
+Includes templates modified from the following:
 
-libactivator listener template is a modified version of https://github.com/rpetrich/libactivator/tree/master/example.
+- cydget, framework, notification_center_widget, and xpc_service
+	- Source: https://github.com/DHowett/theos-nic-templates.
 
-application_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/application.nic.tar
+- notification_center_widget-7up
+ 	- Source: https://github.com/sharedInstance/iOS-7-Notification-Center-Widget-Template.
 
-tool_swift template is a modified version of https://github.com/theos/theos/tree/master/templates/ios/theos/tool.nic.tar
+- tweak, application, and tool
+	- Source: https://github.com/theos/theos/tree/legacy/templates/iphone.
+
+- activator_listener
+	- Source: https://github.com/rpetrich/libactivator/tree/master/example.
