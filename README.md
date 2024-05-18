@@ -41,13 +41,6 @@ A set of [NIC](https://theos.dev/docs/nic) templates
 - Run `nicify.pl` on it
 	- Note: the resulting template can be placed in $THEOS/templates/ for use with the NIC (i.e., `nic.pl`)
 
-## Building the templates repo:
-
-	$ ./build.sh
-
-## Testing the templates repo:
-
-	$ ./test.sh
 ---
 
 Includes templates modified from the following:
