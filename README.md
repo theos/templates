@@ -35,11 +35,11 @@ A set of [NIC](https://theos.dev/docs/nic) templates
 
 ## Building your own template
 
-- Copy a preexisting directory from ./ios/ OR run denicify.pl on a preexisting .nic.tar
+- Copy a preexisting directory from ./ios/ OR run `denicify.pl` on a preexisting .nic.tar
 - Rename the resulting directory
 - Edit its contents as desired
-- Run nicify.pl on it
-	- Note: the resulting template can be placed in nic/templates/ for use with the NIC (i.e., nic.pl)
+- Run `nicify.pl` on it
+	- Note: the resulting template can be placed in $THEOS/templates/ for use with the NIC (i.e., `nic.pl`)
 
 ## Building the templates repo:
 
