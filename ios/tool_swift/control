@@ -7,4 +7,4 @@ Maintainer: @@USER@@
 Author: @@USER@@
 Section: System
 Tag: role::hacker
-Depends: ${LIBSWIFT}
+Depends: firmware (>= 12.2) | ${LIBSWIFT}

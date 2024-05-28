@@ -2,8 +2,8 @@ Package: @@PACKAGENAME@@
 Name: @@FULLPROJECTNAME@@
 Version: 0.0.1
 Architecture: iphoneos-arm
-Description: An awesome application!
+Description: An awesome SwiftUI application!
 Maintainer: @@USER@@
 Author: @@USER@@
 Section: Utilities
-Depends: firmware (>= 12.2) | ${LIBSWIFT}
+Depends: firmware (>= 14.0)

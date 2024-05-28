@@ -1,0 +1,4 @@
+module @@PROJECTNAME@@C {
+    umbrella "."
+    export *
+}
