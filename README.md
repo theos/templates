@@ -19,6 +19,7 @@ A set of [NIC](https://theos.dev/docs/nic) templates
 - CLI Tool (Objective-C and Swift)
 - Tweak (bare or with a simple preference switch)
 - XPC service
+- Safari extension
 
 ## Usage:
 
