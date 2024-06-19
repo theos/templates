@@ -24,4 +24,5 @@ jobs:
 
       - name: Check
         run: |
-          templates/integrity_check.sh
+          cd templates
+          ./integrity_check.sh
