@@ -1,0 +1,27 @@
+name: NIC Integrity
+
+on:
+  push:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      THEOS: ${{ github.workspace }}/theos
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          path: templates
+
+      - name: Checkout theos/theos
+        uses: actions/checkout@v4
+        with:
+          repository: theos/theos
+          submodules: recursive
+          path: ${{ env.THEOS }}
+
+      - name: Check
+        run: |
+          templates/integrity_check.sh
