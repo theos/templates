@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>@@PROJECTNAME@@</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.@@USER@@.@@PARENTPROJECTNAME@@.app.@@PROJECTNAME@@</string>
+	<string>@@PACKAGEPREFIX@@.@@PARENTPROJECTNAME@@.app.@@PROJECTNAME@@</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
