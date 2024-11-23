@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var items = [Date]()
+    @State private var items: [Date] = []
 
     var body: some View {
         NavigationView {
