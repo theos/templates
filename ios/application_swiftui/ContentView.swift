@@ -37,9 +37,3 @@ struct ContentView: View {
         items.remove(atOffsets: offsets)
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
