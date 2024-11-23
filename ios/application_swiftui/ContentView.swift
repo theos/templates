@@ -21,11 +21,11 @@ struct ContentView: View {
             .navigationTitle("Content View")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
+                    Button {
                         withAnimation(.easeInOut) {
                             items.insert(Date(), at: 0)
                         }
-                    }) {
+                    } label: {
                         Image(systemName: "plus")
                     }
                 }
