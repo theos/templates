@@ -4,15 +4,10 @@ A set of [NIC](https://theos.dev/docs/nic) templates
 
 ## Templates included:
 
-- libactivator event
-- libactivator listener
 - Application (Objective-C and Swift [UIKit; SwiftUI])
 - Control Center module (iOS 11+)
-- Cydget
-- Flipswitch switch
 - Framework
 - Library
-- Notification Center widget (iOS 5/6 and iOS 7+)
 - Null
 - Preference bundle (Objective-C and Swift)
 - Theme
