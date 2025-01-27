@@ -1,4 +1,0 @@
-name "iphone/activator_event"
-constrain "control" to package
-constrain "theos" to link_theos
-prompt FILTER "MobileSubstrate Bundle filter" "com.apple.springboard"
