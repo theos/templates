@@ -1,4 +1,0 @@
-name "iphone/notification_center_widget-7up"
-constrain "control" to package
-constrain "theos" to link_theos
-prompt NCSECTION "Widget section (Today = NotificationCenterToday | All = NotificationCenter)" "NotificationCenterToday"

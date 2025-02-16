@@ -1,9 +1,0 @@
-Package: @@PACKAGENAME@@
-Name: @@FULLPROJECTNAME@@
-Version: 0.0.1
-Architecture: iphoneos-arm
-Description: A simple widget for the notification center!
-Maintainer: @@USER@@
-Author: @@USER@@
-Section: Addons (NotificationCenter)
-Depends: firmware (>= 5.0), com.saurik.substrate.safemode, com.chpwn.weeloader, org.thebigboss.customwidgeticons, com.arichardson.weepreferenceloader
